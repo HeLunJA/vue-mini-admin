@@ -1,0 +1,90 @@
+<script setup lang="ts">
+import DarkThemeSwitch from '@/components/DarkThemeSwitch/index.vue'
+import Breadcrumb from './Breadcrumb.vue'
+import { useRouter } from 'vue-router'
+import { tabStore } from '@/store/tab'
+import { themeStore } from '@/store/theme'
+import { useSwitchDark } from '@/hooks/useChangeTheme'
+import { computed } from 'vue'
+const isDark = useSwitchDark()
+const themeColor = computed(() => (isDark.value ? '#fff' : '#171a1c'))
+const tab_store = tabStore()
+const theme_store = themeStore()
+const router = useRouter()
+const isCollapse = computed(() => theme_store.isCollapse)
+const collapseWidth = computed(() => (isCollapse.value ? '64px' : '200px'))
+const loginOut = () => {
+  router
+    .replace({
+      name: 'login'
+    })
+    .then(() => {
+      tab_store.updateTabList([{ name: 'home', path: '/home', label: '首页' }])
+    })
+}
+</script>
+
+<template>
+  <div class="header-box">
+    <div class="left-box">
+      <img class="logo" src="@/assets/img/logo.png" alt="" />
+      <transition name="el-fade-in-linear">
+        <h4 class="title" v-show="!isCollapse">admin</h4>
+      </transition>
+    </div>
+    <div class="center-box">
+      <Breadcrumb />
+    </div>
+    <div class="right-box">
+      <DarkThemeSwitch></DarkThemeSwitch>
+      <el-dropdown trigger="click">
+        <component class="setIcon" is="Tools"></component>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item @click="loginOut" icon="SwitchButton">退出登录</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+    </div>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.header-box {
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  height: 100%;
+  .left-box {
+    width: v-bind(collapseWidth);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    .logo {
+      width: 30px;
+      height: 30px;
+      margin-right: 12px;
+    }
+    .title {
+      color: v-bind(themeColor);
+    }
+  }
+  .center-box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .right-box {
+    display: flex;
+    align-items: center;
+    .setIcon {
+      width: 18px;
+      height: 18px;
+      margin-left: 12px;
+    }
+  }
+}
+</style>

@@ -1,0 +1,12 @@
+.breadcrumb-enter-active,
+.breadcrumb-leave-active {
+  transition: all 0.3s ease;
+}
+.breadcrumb-enter-from,
+.breadcrumb-leave-active {
+  margin-left: 40px;
+  transform: translateX(-10px);
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
