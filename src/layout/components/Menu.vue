@@ -1,13 +1,8 @@
 <script setup lang="ts">
 import { useRouter, useRoute } from 'vue-router'
-import { useSwitchDark } from '@/hooks/useChangeTheme'
 import { computed } from 'vue'
 import { themeStore } from '@/store/theme'
 const store = themeStore()
-const isDark = useSwitchDark()
-const themeColor = computed(() => (isDark.value ? '$layout-navBgc-color' : '#fff'))
-const fontColor = computed(() => (isDark.value ? '#fff' : '$layout-navBgc-color'))
-const activeColor = computed(() => (isDark.value ? 'black' : '#cae4ff'))
 const isCollapse = computed(() => store.isCollapse)
 const router = useRouter()
 const route = useRoute()
@@ -19,7 +14,7 @@ const action = (name: string) => {
 </script>
 
 <template>
-  <el-menu :default-active="route.name" unique-opened :collapse="isCollapse" :collapse-transition="false" class="menu">
+  <el-menu :default-active="route.name" :collapse="isCollapse" :collapse-transition="false" class="menu">
     <el-menu-item index="home" @click="action('home')">
       <el-icon><component is="Setting"></component></el-icon>
       <template #title>首页</template>
@@ -60,20 +55,10 @@ const action = (name: string) => {
 <style lang="scss" scoped>
 .menu {
   height: calc(100vh - 100px);
-  background-color: v-bind(themeColor);
   .icon {
     width: 16px;
     height: 16px;
     margin-right: 16px;
-  }
-  :deep(.el-menu-item:hover) {
-    background-color: v-bind(activeColor);
-  }
-  :deep(.el-sub-menu__title:hover) {
-    background-color: v-bind(activeColor);
-  }
-  :deep(.el-sub-menu__title) {
-    color: v-bind(fontColor) !important;
   }
 }
 </style>

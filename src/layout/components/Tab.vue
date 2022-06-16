@@ -54,7 +54,7 @@ watch(
       @close="tabClose(item.name)"
     >
       <el-dropdown trigger="contextmenu">
-        <span class="el-dropdown-link">
+        <span>
           {{ item.label }}
         </span>
         <template #dropdown>
@@ -79,22 +79,22 @@ watch(
   white-space: nowrap;
   border-bottom: 1px solid v-bind(topBorderColor);
   background-color: v-bind(navBgcColor);
-  :deep(.el-scrollbar__wrap) {
-    display: flex;
-    align-items: center;
-  }
-  .tab-item {
+  &-item {
     margin-right: 8px;
     height: 30px;
     cursor: pointer;
     border: 1px solid v-bind(borderColor);
     color: v-bind(color);
   }
-  .tab-active {
+  &-active {
     background-color: v-bind(activeColor) !important;
   }
   :deep(.el-card__body) {
     display: flex;
+  }
+  :deep(.el-scrollbar__wrap) {
+    display: flex;
+    align-items: center;
   }
 }
 </style>

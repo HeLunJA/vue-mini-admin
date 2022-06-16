@@ -7,7 +7,7 @@ import { themeStore } from '@/store/theme'
 import { useSwitchDark } from '@/hooks/useChangeTheme'
 import { computed } from 'vue'
 const isDark = useSwitchDark()
-const themeColor = computed(() => (isDark.value ? '#fff' : '#171a1c'))
+const themeColor = computed(() => (isDark.value ? '#fff' : '#303133'))
 const tab_store = tabStore()
 const theme_store = themeStore()
 const router = useRouter()

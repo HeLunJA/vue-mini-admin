@@ -10,8 +10,8 @@ import { themeStore } from '@/store/theme'
 const store = themeStore()
 const isCollapse = computed(() => store.isCollapse)
 const isDark = useSwitchDark()
+// bodyColor main视图底部颜色
 const bodyColor = computed(() => (isDark.value ? '#f5f5f500' : '#f5f5f5'))
-const themeColor = computed(() => (isDark.value ? '$layout-navBgc-color' : '#fff'))
 const expandColor = computed(() => (isDark.value ? '#fff' : '#606266'))
 const rotate = computed(() => (isCollapse.value ? 'rotate(0deg)' : 'rotate(180deg)'))
 const collapseWidth = computed(() => (isCollapse.value ? '64px' : '200px'))
@@ -57,7 +57,6 @@ onMounted(() => {
 <style lang="scss" scoped>
 .layout {
   .header {
-    background-color: v-bind(themeColor);
     border-bottom: 1px solid v-bind(topBorderColor);
     box-sizing: border-box;
   }
@@ -66,7 +65,6 @@ onMounted(() => {
   }
   .aside {
     height: 100%;
-    background-color: v-bind(themeColor);
     .menu-top-box {
       .margin-left-8px {
         margin-right: 8px;
@@ -91,7 +89,7 @@ onMounted(() => {
     background: v-bind(bodyColor);
   }
   :deep(.el-aside) {
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
   }
 }
 </style>
