@@ -7,6 +7,6 @@ function useSwitchDark() {
 }
 function useDarkThemeChange(isDark: boolean) {
   store.updateDark(isDark)
-}
+} 
 
 export { useSwitchDark, useDarkThemeChange }

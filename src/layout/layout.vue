@@ -10,7 +10,6 @@ import { themeStore } from '@/store/theme'
 const store = themeStore()
 const isCollapse = computed(() => store.isCollapse)
 const isDark = useSwitchDark()
-// bodyColor main视图底部颜色
 const bodyColor = computed(() => (isDark.value ? '#f5f5f500' : '#f5f5f5'))
 const expandColor = computed(() => (isDark.value ? '#fff' : '#606266'))
 const rotate = computed(() => (isCollapse.value ? 'rotate(0deg)' : 'rotate(180deg)'))
@@ -36,10 +35,10 @@ onMounted(() => {
 <template>
   <el-container class="layout">
     <el-header class="header"><Header /></el-header>
-    <el-container class="body-height">
+    <el-container class="container">
       <el-aside class="aside" :width="collapseWidth">
         <el-scrollbar>
-          <div class="menu-top-box">
+          <div class="search">
             <MenuSearch class="margin-left-8px" v-if="!isCollapse" />
             <component class="expand" is="Expand" @click="changeMenu"></component>
           </div>
@@ -55,20 +54,20 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+.margin-left-8px {
+  margin-right: 8px;
+}
 .layout {
   .header {
     border-bottom: 1px solid v-bind(topBorderColor);
     box-sizing: border-box;
   }
-  .body-height {
+  .container {
     height: calc(100vh - 60px);
   }
   .aside {
     height: 100%;
-    .menu-top-box {
-      .margin-left-8px {
-        margin-right: 8px;
-      }
+    .search {
       display: flex;
       align-items: center;
       justify-content: center;

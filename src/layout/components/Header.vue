@@ -25,17 +25,17 @@ const loginOut = () => {
 </script>
 
 <template>
-  <div class="header-box">
-    <div class="left-box">
+  <div class="headerBox">
+    <div class="headerBox-left">
       <img class="logo" src="@/assets/img/logo.png" alt="" />
       <transition name="el-fade-in-linear">
         <h4 class="title" v-show="!isCollapse">admin</h4>
       </transition>
     </div>
-    <div class="center-box">
+    <div class="headerBox-center">
       <Breadcrumb />
     </div>
-    <div class="right-box">
+    <div class="headerBox-right">
       <DarkThemeSwitch></DarkThemeSwitch>
       <el-dropdown trigger="click">
         <component class="setIcon" is="Tools"></component>
@@ -50,12 +50,12 @@ const loginOut = () => {
 </template>
 
 <style lang="scss" scoped>
-.header-box {
+.headerBox {
   display: flex;
   justify-content: space-between;
   color: #fff;
   height: 100%;
-  .left-box {
+  &-left {
     width: v-bind(collapseWidth);
     transition: all 0.3s ease;
     display: flex;
@@ -71,13 +71,13 @@ const loginOut = () => {
       color: v-bind(themeColor);
     }
   }
-  .center-box {
+  &-center {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: flex-start;
   }
-  .right-box {
+  &-right {
     display: flex;
     align-items: center;
     .setIcon {
