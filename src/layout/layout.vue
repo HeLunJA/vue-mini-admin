@@ -58,6 +58,7 @@ onMounted(() => {
   margin-right: 8px;
 }
 .layout {
+  min-width: 1200px;
   .header {
     border-bottom: 1px solid v-bind(topBorderColor);
     box-sizing: border-box;

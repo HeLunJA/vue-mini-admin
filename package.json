@@ -11,9 +11,11 @@
     "@vueuse/core": "^8.6.0",
     "axios": "^0.27.2",
     "element-plus": "^2.2.5",
+    "mockjs": "^1.1.0",
     "normalize.css": "^8.0.1",
     "pinia": "^2.0.0-rc.10",
     "pinia-plugin-persist": "^1.0.0",
+    "vite-plugin-mock": "^2.9.6",
     "vite-plugin-svg-icons": "^2.0.1",
     "vue": "^3.2.25",
     "vue-router": "4"

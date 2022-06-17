@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { loginRequest } from '@/service/login'
 import type { FormInstance } from 'element-plus'
 import type { IAccount } from '@/service/login/type'
 import DarkThemeSwitch from '@/components/DarkThemeSwitch/index.vue'
@@ -32,7 +33,11 @@ const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.validate((valid) => {
     if (valid) {
-      router.push({ name: 'home' })
+      loginRequest(account).then((res) => {
+        console.log(res)
+
+        router.push({ name: 'home' })
+      })
     } else {
       return false
     }

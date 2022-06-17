@@ -8,10 +8,11 @@ const config: AxiosRequestConfig = {
 }
 
 const instance: AxiosInstance = axios.create(config)
-// 请求拦截器 
+// 请求拦截器
 instance.interceptors.request.use(
   (config) => {
     console.log(config)
+    return config
   },
   (err) => {
     console.log(err)
@@ -21,6 +22,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (config) => {
     console.log(config)
+    return config
   },
   (err) => {
     console.log(err)

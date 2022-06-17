@@ -57,8 +57,6 @@ const router = createRouter({
   history: createWebHashHistory()
 })
 
-router.beforeEach((router) => {
-  console.log(router, '当前实例拦截')
-})
+router.beforeEach((router) => {})
 
 export default router
