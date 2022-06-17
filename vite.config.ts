@@ -26,7 +26,7 @@ export default ({ mode }) => {
       }),
       createSvgIconsPlugin({
         iconDirs: [path.resolve(process.cwd(), 'src/assets/svg')]
-      })
+      }),
     ],
     resolve: {
       alias: {

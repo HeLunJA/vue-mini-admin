@@ -1,9 +1,12 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
+import { useGlobalStore } from '@/store'
+import pinia from '@/store'
+const globalStore = useGlobalStore(pinia)
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/login',
+    redirect: { name: 'home' },
     component: () => import('@/layout/layout.vue'),
     children: [
       { name: 'home', path: 'home', component: () => import('@/views/main/home/home.vue'), meta: { label: '首页' } }
@@ -57,6 +60,15 @@ const router = createRouter({
   history: createWebHashHistory()
 })
 
-router.beforeEach((router) => {})
+router.beforeEach((to, from, next) => {
+  console.log(globalStore.token)
+  if (!globalStore.token && to.name !== 'login') {
+    next({
+      name: 'login'
+    })
+  } else {
+    next()
+  }
+})
 
 export default router

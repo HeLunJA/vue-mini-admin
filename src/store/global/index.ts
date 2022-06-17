@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
-import { ILoginState } from './type'
-export const useLoginStore = defineStore({
-  id: 'login',
-  state: (): ILoginState => {
+import type { IGlobalState } from './type'
+export const useGlobalStore = defineStore({
+  id: 'global',
+  state: (): IGlobalState => {
     return {
       token: ''
     }

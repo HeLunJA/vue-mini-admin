@@ -3,14 +3,18 @@ import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { loginRequest } from '@/service/login'
 import type { FormInstance } from 'element-plus'
+import { ElMessage } from 'element-plus'
 import type { IAccount } from '@/service/login/type'
 import DarkThemeSwitch from '@/components/DarkThemeSwitch/index.vue'
+import { useGlobalStore } from '@/store/global'
+const globalStore = useGlobalStore()
 const router = useRouter()
 const ruleFormRef = ref<FormInstance>()
 const account = reactive<IAccount>({
   name: 'admin',
   password: '123456'
 })
+const loading = ref<boolean>(false)
 const validateName = (rule: any, value: any, callback: any) => {
   if (value === '') {
     callback(new Error('请输入登录账号'))
@@ -31,13 +35,18 @@ const rules = reactive({
 })
 const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
-  formEl.validate((valid) => {
+  formEl.validate(async (valid) => {
     if (valid) {
-      loginRequest(account).then((res) => {
-        console.log(res)
-
+      loading.value = true
+      const result = await loginRequest(account)
+      loading.value = false
+      if (result.data.code === '0000') {
+        globalStore.updateToken(result.data.data.token)
+        ElMessage.success(result.data.msg)
         router.push({ name: 'home' })
-      })
+      } else {
+        ElMessage.error(result.data.msg)
+      }
     } else {
       return false
     }
@@ -71,7 +80,9 @@ const submitForm = (formEl: FormInstance | undefined) => {
           />
         </el-form-item>
         <div class="btn-box display_center">
-          <el-button class="form-btn" size="large" type="primary" @click="submitForm(ruleFormRef)">登录</el-button>
+          <el-button class="form-btn" size="large" type="primary" @click="submitForm(ruleFormRef)" :loading="loading"
+            >登录</el-button
+          >
         </div>
       </el-form>
     </el-card>
