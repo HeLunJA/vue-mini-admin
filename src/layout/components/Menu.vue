@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { useRouter, useRoute } from 'vue-router'
-import { computed } from 'vue'
+import type { routerItem } from '@/types'
+import { computed, ref } from 'vue'
 import { themeStore } from '@/store/theme'
+import { getRouterList } from '@/service/login'
+import MenuItem from '@/layout/components/MenuItem.vue'
+import setRouter from '@/utils/setRouter'
+import type { RouteRecordRaw } from 'vue-router'
+
 const store = themeStore()
 const isCollapse = computed(() => store.isCollapse)
 const router = useRouter()
@@ -11,6 +17,15 @@ const action = (name: string) => {
     name
   })
 }
+const routerList = ref<routerItem[]>([])
+getRouterList().then((res) => {
+  routerList.value = setRouter(res.data.list)
+  routerList.value.forEach((item) => {
+    console.log(item)
+
+    router.addRoute(item as unknown as RouteRecordRaw)
+  })
+})
 </script>
 
 <template>
@@ -19,36 +34,7 @@ const action = (name: string) => {
       <el-icon><component is="Setting"></component></el-icon>
       <template #title>首页</template>
     </el-menu-item>
-    <el-sub-menu index="cs1">
-      <template #title>
-        <el-icon><component is="Setting"></component></el-icon>
-        <span>测试目录1</span>
-      </template>
-      <el-menu-item index="set1" @click="action('set1')">
-        <template #title>
-          <el-icon><component is="Setting"></component></el-icon>
-          <span>设置1</span>
-        </template>
-      </el-menu-item>
-      <el-menu-item index="set11" @click="action('set11')">
-        <template #title>
-          <el-icon><component is="Setting"></component></el-icon>
-          <span>设置111</span>
-        </template>
-      </el-menu-item>
-    </el-sub-menu>
-    <el-sub-menu index="cs2">
-      <template #title>
-        <el-icon><component is="Setting"></component></el-icon>
-        <span>测试目录2</span>
-      </template>
-      <el-menu-item index="set2" @click="action('set2')">
-        <template #title>
-          <el-icon><component is="Setting"></component></el-icon>
-          <span>设置234</span>
-        </template>
-      </el-menu-item>
-    </el-sub-menu>
+    <MenuItem :menuList="routerList" />
   </el-menu>
 </template>
 

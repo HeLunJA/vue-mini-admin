@@ -2,13 +2,13 @@
 import DarkThemeSwitch from '@/components/DarkThemeSwitch/index.vue'
 import Breadcrumb from './Breadcrumb.vue'
 import { useRouter } from 'vue-router'
-import { tabStore } from '@/store/tab'
+import { useGlobalStore } from '@/store/global'
 import { themeStore } from '@/store/theme'
 import { useSwitchDark } from '@/hooks/useChangeTheme'
 import { computed } from 'vue'
 const isDark = useSwitchDark()
 const themeColor = computed(() => (isDark.value ? '#fff' : '#303133'))
-const tab_store = tabStore()
+const gloablStore = useGlobalStore()
 const theme_store = themeStore()
 const router = useRouter()
 const isCollapse = computed(() => theme_store.isCollapse)
@@ -19,7 +19,8 @@ const loginOut = () => {
       name: 'login'
     })
     .then(() => {
-      tab_store.updateTabList([{ name: 'home', path: '/home', label: '首页' }])
+      gloablStore.updateTabList([{ name: 'home', path: '/home', label: '首页' }])
+      gloablStore.updateToken('')
     })
 }
 </script>

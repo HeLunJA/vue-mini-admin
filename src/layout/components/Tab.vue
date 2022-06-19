@@ -2,13 +2,13 @@
 import { computed, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useSwitchDark } from '@/hooks/useChangeTheme'
-import { tabStore } from '@/store/tab'
+import { useGlobalStore } from '@/store/global'
 import type { ItabItem } from '@/store/tab/type'
 import { useRouter, useRoute } from 'vue-router'
 const router = useRouter()
 const route = useRoute()
-const store = tabStore()
-const { tabList } = storeToRefs(store)
+const gloablStore = useGlobalStore()
+const { tabList } = storeToRefs(gloablStore)
 const isDark = useSwitchDark()
 const color = computed(() => (isDark.value ? '#409eff' : '#495060'))
 const bodyColor = computed(() => (isDark.value ? '#1d1e1f00' : '#fff'))
@@ -22,7 +22,7 @@ const tabAction = (name: string) => {
   })
 }
 const tabClose = (name: string) => {
-  store.removeTab(name, route.name as string)
+  gloablStore.removeTab(name, route.name as string)
 }
 const refresh = (name: string) => {
   router.replace({
@@ -30,7 +30,7 @@ const refresh = (name: string) => {
   })
 }
 const pagesClose = (item: ItabItem) => {
-  store.updateTabList([item])
+  gloablStore.updateTabList([item])
   router.replace({
     name: item.name
   })
@@ -38,7 +38,7 @@ const pagesClose = (item: ItabItem) => {
 watch(
   () => route.name,
   () => {
-    store.addTab({ name: route.name as string, label: route.meta.label as string, path: route.path })
+    gloablStore.addTab({ name: route.name as string, label: route.meta.label as string, path: route.path })
   }
 )
 </script>

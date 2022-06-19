@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { loginRequest } from '@/service/login'
+import { login } from '@/service/login'
 import type { FormInstance } from 'element-plus'
 import { ElMessage } from 'element-plus'
 import type { IAccount } from '@/service/login/type'
@@ -38,7 +38,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
   formEl.validate(async (valid) => {
     if (valid) {
       loading.value = true
-      const result = await loginRequest(account)
+      const result = await login(account)
       loading.value = false
       if (result.data.code === '0000') {
         globalStore.updateToken(result.data.data.token)
