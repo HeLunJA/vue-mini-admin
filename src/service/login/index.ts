@@ -1,7 +1,7 @@
 import { instance } from '../index'
-import type { IAccount } from './type'
+import type { accountType } from '@/types'
 import '@/mock/index.ts'
-export function login(account: IAccount) {
+export function login(account: accountType) {
   return instance.post('/login', account)
 }
 

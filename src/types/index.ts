@@ -1,8 +1,17 @@
 import type { RouteRecordRaw } from 'vue-router'
-type route = {
-  componentPath?: string
+type metaType = {
+  componentPath: string | null,
+  label: string,
   icon: string
-  label: string
+}
+type route = {
+  meta: metaType,
   children: routerItem[]
 }
 export type routerItem = RouteRecordRaw & route
+
+export type accountType = {
+  name: string
+  password: string
+}
+

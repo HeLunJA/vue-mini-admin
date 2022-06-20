@@ -1,9 +1,13 @@
 import { defineStore } from 'pinia'
 import { useDark } from '@vueuse/core'
-import { IThemeState } from './type'
+import type { WritableComputedRef } from 'vue'
+type themeState = {
+  isDark: WritableComputedRef<boolean>,
+  isCollapse: boolean
+}
 export const themeStore = defineStore({
   id: 'theme',
-  state: (): IThemeState => {
+  state: (): themeState => {
     return {
       isDark: useDark(),
       isCollapse: false

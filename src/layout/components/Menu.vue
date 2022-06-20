@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import { useRouter, useRoute } from 'vue-router'
-import type { routerItem } from '@/types'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { themeStore } from '@/store/theme'
-import { getRouterList } from '@/service/login'
 import MenuItem from '@/layout/components/MenuItem.vue'
-import setRouter from '@/utils/setRouter'
-import type { RouteRecordRaw } from 'vue-router'
-
+import { useGlobalStore } from '@/store/global'
 const store = themeStore()
+const globalStore = useGlobalStore()
 const isCollapse = computed(() => store.isCollapse)
 const router = useRouter()
 const route = useRoute()
@@ -17,15 +14,7 @@ const action = (name: string) => {
     name
   })
 }
-const routerList = ref<routerItem[]>([])
-getRouterList().then((res) => {
-  routerList.value = setRouter(res.data.list)
-  routerList.value.forEach((item) => {
-    console.log(item)
-
-    router.addRoute(item as unknown as RouteRecordRaw)
-  })
-})
+const routerList = computed(() => globalStore.routerList)
 </script>
 
 <template>

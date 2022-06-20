@@ -4,13 +4,13 @@ import { useRouter } from 'vue-router'
 import { login } from '@/service/login'
 import type { FormInstance } from 'element-plus'
 import { ElMessage } from 'element-plus'
-import type { IAccount } from '@/service/login/type'
+import type { accountType } from '@/types'
 import DarkThemeSwitch from '@/components/DarkThemeSwitch/index.vue'
 import { useGlobalStore } from '@/store/global'
 const globalStore = useGlobalStore()
 const router = useRouter()
 const ruleFormRef = ref<FormInstance>()
-const account = reactive<IAccount>({
+const account = reactive<accountType>({
   name: 'admin',
   password: '123456'
 })

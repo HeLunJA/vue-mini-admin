@@ -26,18 +26,22 @@ const login: MockMethod = {
 // 登录后拿到的路由菜单
 const routers: any = [
   {
-    label: '常用组件',
-    icon: 'Edit',
     name: 'componentViews',
     path: '/componentViews',
-    componentPath: null,
+    meta: {
+      label: '常用组件',
+      icon: 'Edit',
+      componentPath: null,
+    },
     children: [
       {
-        label: '表格组件',
-        icon: 'Edit',
         path: 'dynamicTable',
-        componentPath: '/componentViews/table/dynamicTable',
-        name: 'table'
+        name: 'table',
+        meta: {
+          label: '表格组件',
+          icon: 'Edit',
+          componentPath: '/componentViews/table/dynamicTable',
+        },
       }
     ]
   }

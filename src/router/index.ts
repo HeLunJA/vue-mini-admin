@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import { useGlobalStore } from '@/store/global'
+import type { routerItem } from '@/types'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -28,14 +29,22 @@ const router = createRouter({
   history: createWebHashHistory()
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const globalStore = useGlobalStore()
   if (!globalStore.token && to.name !== 'login') {
     next({
       name: 'login'
     })
   } else {
-    next()
+    if (globalStore.routerList.length) {
+      next()
+    } else {
+      const routerList: routerItem[] = await globalStore.getRouter()
+      routerList.forEach((route) => {
+        router.addRoute(route)
+      })
+      next({ path: to.path as string, replace: true })
+    }
   }
 })
 
