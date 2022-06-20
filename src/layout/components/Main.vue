@@ -2,7 +2,11 @@
 
 <template>
   <div class="main">
-    <el-card class="card" shadow="never"><router-view></router-view></el-card>
+    <router-view v-slot="{ Component }">
+      <transition name="scale" mode="out-in" appear>
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </div>
 </template>
 

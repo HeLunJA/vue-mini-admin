@@ -20,7 +20,7 @@ const routerList = computed(() => globalStore.routerList)
 <template>
   <el-menu :default-active="route.name" :collapse="isCollapse" :collapse-transition="false" class="menu">
     <el-menu-item index="home" @click="action('home')">
-      <el-icon><component is="Setting"></component></el-icon>
+      <el-icon><component is="Eleme"></component></el-icon>
       <template #title>首页</template>
     </el-menu-item>
     <MenuItem :menuList="routerList" />

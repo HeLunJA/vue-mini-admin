@@ -2,4 +2,8 @@
   <div class="body">home</div>
 </template>
 <script lang="ts" setup></script>
-<style scoped></style>
+<style scoped>
+.body {
+  height: 100%;
+}
+</style>

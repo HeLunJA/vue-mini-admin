@@ -1,5 +1,9 @@
 <template>
-  <div class="body">表格組件</div>
+  <div class="body">组件</div>
 </template>
 <script lang="ts" setup></script>
-<style scoped></style>
+<style scoped>
+.body {
+  height: 100%;
+}
+</style>
