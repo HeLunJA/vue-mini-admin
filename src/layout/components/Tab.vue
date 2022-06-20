@@ -3,7 +3,7 @@ import { computed, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useSwitchDark } from '@/hooks/useChangeTheme'
 import { useGlobalStore } from '@/store/global'
-import type { ItabItem } from '@/store/tab/type'
+import type { ItabItem } from '@/store/global/type'
 import { useRouter, useRoute } from 'vue-router'
 const router = useRouter()
 const route = useRoute()
