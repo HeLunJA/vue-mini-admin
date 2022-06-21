@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import router from '@/router'
-import { routerItem } from '@/types'
 import setRouter from '@/utils/setRouter'
 import { getRouterList } from '@/service/login'
 type tabItem = {
@@ -11,7 +10,7 @@ type tabItem = {
 type globalState = {
   token: string
   tabList: tabItem[]
-  routerList: routerItem[]
+  routerList: TRouterItem[]
 }
 export const useGlobalStore = defineStore({
   id: 'tab',
@@ -23,7 +22,7 @@ export const useGlobalStore = defineStore({
     }
   },
   actions: {
-    updateRouterList(list: routerItem[]) {
+    updateRouterList(list: TRouterItem[]) {
       this.routerList = setRouter(list)
     },
     updateToken(token: string) {
@@ -50,7 +49,7 @@ export const useGlobalStore = defineStore({
       }
     },
     getRouter() {
-      return new Promise<routerItem[]>(async (resolve) => {
+      return new Promise<TRouterItem[]>(async (resolve) => {
         if (this.routerList.length) {
           resolve(this.routerList)
         } else {

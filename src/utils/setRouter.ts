@@ -1,6 +1,5 @@
-import type { routerItem } from '@/types'
 const modules = import.meta.glob('../views/**/**.vue')
-export default function setRouter(list: routerItem[]): routerItem[] {
+export default function setRouter(list: TRouterItem[]): TRouterItem[] {
   list.map((item) => {
     item.meta.componentPath && (item.component = modules[`../views/main${item.meta.componentPath}.vue`])
     if (item.children && item.children.length) {

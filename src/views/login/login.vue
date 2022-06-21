@@ -4,16 +4,16 @@ import { useRouter } from 'vue-router'
 import { login } from '@/service/login'
 import type { FormInstance } from 'element-plus'
 import { ElMessage } from 'element-plus'
-import type { accountType } from '@/types'
 import DarkThemeSwitch from '@/components/DarkThemeSwitch/index.vue'
 import { useGlobalStore } from '@/store/global'
 const globalStore = useGlobalStore()
 const router = useRouter()
 const ruleFormRef = ref<FormInstance>()
-const account = reactive<accountType>({
+const account = reactive<IAccountType>({
   name: 'admin',
   password: '123456'
 })
+
 const loading = ref<boolean>(false)
 const validateName = (rule: any, value: any, callback: any) => {
   if (value === '') {
