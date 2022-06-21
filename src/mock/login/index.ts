@@ -31,7 +31,7 @@ const routers: any = [
     meta: {
       label: '常用组件',
       icon: 'Edit',
-      componentPath: null,
+      componentPath: null
     },
     children: [
       {
@@ -40,8 +40,8 @@ const routers: any = [
         meta: {
           label: '表格组件',
           icon: 'Edit',
-          componentPath: '/componentViews/table/dynamicTable',
-        },
+          componentPath: '/componentViews/table/dynamicTable'
+        }
       }
     ]
   }
@@ -56,4 +56,15 @@ const routerList: MockMethod = {
     }
   }
 }
-export { login, routerList }
+// 昨日概况数据
+const generalData: MockMethod = {
+  url: '/api/getGeneralData',
+  method: 'get',
+  timeout: 1500,
+  response: () => {
+    return {
+      list: [42502, 17480, 32296, 12057]
+    }
+  }
+}
+export { login, routerList, generalData }

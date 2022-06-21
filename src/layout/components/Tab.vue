@@ -38,7 +38,7 @@ const pagesClose = (item: ItabItem) => {
 watch(
   () => route.name,
   () => {
-    if (route.name && route.name !== 'notFound') {
+    if (route.name && route.name !== 'notFound' && route.name !== 'login') {
       gloablStore.addTab({ name: route.name as string, label: route.meta.label as string, path: route.path })
     }
   }
