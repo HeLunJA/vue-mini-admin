@@ -17,7 +17,7 @@ export const useGlobalStore = defineStore({
   state: (): globalState => {
     return {
       token: '',
-      tabList: [{ name: 'home', path: '/home', label: '首页' }],
+      tabList: [{ name: 'home', path: '/home', label: '首页概况' }],
       routerList: []
     }
   },

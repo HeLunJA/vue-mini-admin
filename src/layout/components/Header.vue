@@ -19,7 +19,7 @@ const loginOut = () => {
       name: 'login'
     })
     .then(() => {
-      gloablStore.updateTabList([{ name: 'home', path: '/home', label: '首页' }])
+      gloablStore.updateTabList([{ name: 'home', path: '/home', label: '首页概况' }])
       gloablStore.updateToken('')
     })
 }

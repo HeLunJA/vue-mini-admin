@@ -8,7 +8,7 @@ const routes: RouteRecordRaw[] = [
     name: 'main',
     component: () => import('@/layout/layout.vue'),
     children: [
-      { name: 'home', path: 'home', component: () => import('@/views/main/home/home.vue'), meta: { label: '首页' } }
+      { name: 'home', path: 'home', component: () => import('@/views/main/home/home.vue'), meta: { label: '首页概况' } }
     ]
   },
   {

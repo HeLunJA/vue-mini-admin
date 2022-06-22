@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, ref, watch, computed } from 'vue'
+import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { login } from '@/service/login'
 import type { FormInstance } from 'element-plus'
@@ -104,6 +104,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
   background-repeat: no-repeat;
   background-size: 80%;
   .card {
+    background-color: $header-bgc-color !important;
     position: relative;
     box-sizing: border-box;
     height: 300px;

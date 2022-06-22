@@ -1,23 +1,29 @@
-import { computed, watch, ref, Ref } from 'vue'
+import { computed, watch, ref,unref, Ref, WritableComputedRef } from 'vue'
 import gsap from 'gsap'
-function useAnimatedNumber(number: Ref<number>, duration: number = 0.5, toFixed: number = 0): Ref<number> {
+function useAnimatedNumber(
+  number: Ref<number> | number,
+  duration: number = 0.5,
+  toFixed: number = 0
+): WritableComputedRef<number> {
+  console.log(number);
+  const refNumber = ref<number>(unref(number))
   const targetNumber = ref<number>(0)
-  const animatedNumber = computed({
+  const animatedNumber = computed<number>({
     get() {
-      return targetNumber.value.toFixed(toFixed)
+      return targetNumber.value.toFixed(toFixed) as unknown as number
     },
     set(val) {
       return val
     }
   })
   watch(
-    () => number.value,
+    () => refNumber.value,
     (newValue) => {
       gsap.to(targetNumber, { duration, value: newValue })
     },
     { immediate: true }
   )
-  return animatedNumber as Ref<number>
+  return animatedNumber as WritableComputedRef<number>
 }
 
 export { useAnimatedNumber }

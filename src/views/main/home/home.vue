@@ -80,6 +80,10 @@ onMounted(async () => {
     }
   }
   .box {
+    padding: 30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
     :deep(.el-skeleton) {
       width: 200px;
       display: flex;
@@ -87,10 +91,6 @@ onMounted(async () => {
       align-items: center;
       justify-content: space-between;
     }
-    padding: 30px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
     .border {
       height: 160px;
       width: 1px;

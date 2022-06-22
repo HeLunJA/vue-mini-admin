@@ -14,7 +14,7 @@ const reload = () => {
   <div class="not-found">
     <div class="content">
       <img class="img" src="@/assets/img/404.png" alt="" />
-      <div class="text">Error，页面出错啦！！请点击返回首页或者刷新页面~</div>
+      <div class="text">Error，页面出错啦！！请点击返回首页概况或者刷新页面~</div>
       <div class="btns">
         <el-button round @click="goHome">返回首页</el-button>
         <el-button type="primary" @click="reload" round>刷新页面</el-button>
