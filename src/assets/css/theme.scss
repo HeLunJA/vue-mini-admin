@@ -1,1 +1,8 @@
-$theme-dark-color: #24292f;
+html {
+  --theme-border-color: #dcdfe6;
+  --theme-card-bgc-color: #ffffff;
+  --base-bgc-color: #f5f5f5;
+}
+$theme-border-color: var(--theme-border-color);
+$theme--card-bgc-color: var(--theme-card-bgc-color);
+$base-bgc-color: var(--base-bgc-color);

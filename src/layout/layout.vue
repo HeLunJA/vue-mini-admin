@@ -10,11 +10,8 @@ import { themeStore } from '@/store/theme'
 const store = themeStore()
 const isCollapse = computed(() => store.isCollapse)
 const isDark = useSwitchDark()
-const bodyColor = computed(() => (isDark.value ? '#f5f5f500' : '#f5f5f5'))
-const expandColor = computed(() => (isDark.value ? '#fff' : '#606266'))
 const rotate = computed(() => (isCollapse.value ? 'rotate(0deg)' : 'rotate(180deg)'))
 const collapseWidth = computed(() => (isCollapse.value ? '64px' : '200px'))
-const topBorderColor = computed(() => (isDark.value ? '#4c4d4f ' : '#dcdfe6'))
 const changeMenu = () => {
   store.updateCollapse()
 }
@@ -60,7 +57,7 @@ onMounted(() => {
 .layout {
   min-width: 1200px;
   .header {
-    border-bottom: 1px solid v-bind(topBorderColor);
+    border-bottom: 1px solid $theme-border-color;
     box-sizing: border-box;
   }
   .container {
@@ -74,19 +71,18 @@ onMounted(() => {
       justify-content: center;
       height: 40px;
       padding: 0px 8px;
-      border-right: 1px solid v-bind(topBorderColor);
+      border-right: 1px solid $theme-border-color;
       box-sizing: border-box;
       width: v-bind(collapseWidth);
       .expand {
         width: 18px;
         height: 18px;
         transform: v-bind(rotate);
-        color: v-bind(expandColor);
       }
     }
   }
   :deep(.el-main) {
-    background: v-bind(bodyColor);
+    background: $base-bgc-color;
   }
   :deep(.el-aside) {
     transition: all 0.2s ease;

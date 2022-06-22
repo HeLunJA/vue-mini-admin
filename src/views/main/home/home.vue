@@ -24,31 +24,29 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, computed, Ref, onMounted } from 'vue'
+import { ref, computed, WritableComputedRef, onMounted } from 'vue'
 import { useAnimatedNumber } from '@/hooks/useAnimatedNumber'
 import { getGeneralData } from '@/service/home'
 import { useSwitchDark } from '@/hooks/useChangeTheme'
-interface IGeneral {
+interface IGeneral<T> {
   label: string
   icon: string
-  number: Ref
+  number: WritableComputedRef<T> | null
 }
 const isDark = useSwitchDark()
-const borderColor = computed(() => (isDark.value ? '#4c4d4f ' : '#dcdfe6'))
-const centerColor = computed(() => (isDark.value ? '#8f8484 ' : '#dddddd'))
 const spaceColor = computed(() => (isDark.value ? '#3b3636 ' : '#ffffff'))
 const isSkeleton = ref<boolean>(true)
-const generals = ref<IGeneral[]>([
-  { label: '点赞人数', icon: 'zan', number: ref() },
-  { label: '收藏人数', icon: 'sc', number: ref() },
-  { label: '分享人数', icon: 'fx', number: ref() },
-  { label: '评论人数', icon: 'pl', number: ref() }
+const generals = ref<IGeneral<number>[]>([
+  { label: '点赞人数', icon: 'zan', number: null },
+  { label: '收藏人数', icon: 'sc', number: null },
+  { label: '分享人数', icon: 'fx', number: null },
+  { label: '评论人数', icon: 'pl', number: null }
 ])
 onMounted(async () => {
   const result = await getGeneralData()
   const numbers: number[] = result.data.list
   numbers.forEach((item, index) => {
-    generals.value[index].number = useAnimatedNumber(ref(item))
+    generals.value[index].number = useAnimatedNumber(item) as unknown as number
   })
   isSkeleton.value = false
 })
@@ -67,7 +65,7 @@ onMounted(async () => {
     font-weight: bold;
     padding: 22px 0;
     padding-left: 16px;
-    border-bottom: 1px solid v-bind(borderColor);
+    border-bottom: 1px solid $theme-border-color;
     &::before {
       content: '';
       position: absolute;
@@ -94,7 +92,7 @@ onMounted(async () => {
     .border {
       height: 160px;
       width: 1px;
-      background: linear-gradient(180deg, v-bind(spaceColor) 0%, v-bind(centerColor) 50%, v-bind(spaceColor) 100%);
+      background: linear-gradient(180deg, v-bind(spaceColor) 0%, $theme-border-color 50%, v-bind(spaceColor) 100%);
     }
     .item {
       display: flex;

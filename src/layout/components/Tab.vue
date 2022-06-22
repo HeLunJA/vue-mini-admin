@@ -10,12 +10,7 @@ const route = useRoute()
 const gloablStore = useGlobalStore()
 const { tabList } = storeToRefs(gloablStore)
 const isDark = useSwitchDark()
-const color = computed(() => (isDark.value ? '#409eff' : '#495060'))
-const bodyColor = computed(() => (isDark.value ? '#1d1e1f00' : '#fff'))
-const borderColor = computed(() => (isDark.value ? '#409eff' : '#d8dce5'))
 const activeColor = computed(() => (isDark.value ? '#274f62' : '#cae4ff'))
-const navBgcColor = computed(() => (isDark.value ? '#1d1e1f' : '#fff'))
-const topBorderColor = computed(() => (isDark.value ? '#4c4d4f ' : '#dcdfe6'))
 const tabAction = (name: string) => {
   router.push({
     name
@@ -49,7 +44,6 @@ watch(
   <el-scrollbar class="tab">
     <el-tag
       v-for="item in tabList"
-      :color="bodyColor"
       closable
       :class="{ 'tab-item': true, 'tab-active': route.name === item.name }"
       @click="tabAction(item.name)"
@@ -79,14 +73,12 @@ watch(
   margin-bottom: 20px;
   height: 40px;
   white-space: nowrap;
-  border-bottom: 1px solid v-bind(topBorderColor);
-  background-color: v-bind(navBgcColor);
+  border-bottom: 1px solid $theme-border-color;
+  background-color: $theme--card-bgc-color;
   &-item {
     margin-right: 8px;
     height: 30px;
     cursor: pointer;
-    border: 1px solid v-bind(borderColor);
-    color: v-bind(color);
   }
   &-active {
     background-color: v-bind(activeColor) !important;

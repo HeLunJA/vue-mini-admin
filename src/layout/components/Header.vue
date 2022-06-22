@@ -54,7 +54,6 @@ const loginOut = () => {
 .headerBox {
   display: flex;
   justify-content: space-between;
-  color: #fff;
   height: 100%;
   &-left {
     width: v-bind(collapseWidth);
@@ -67,9 +66,6 @@ const loginOut = () => {
       width: 30px;
       height: 30px;
       margin-right: 12px;
-    }
-    .title {
-      color: v-bind(themeColor);
     }
   }
   &-center {
