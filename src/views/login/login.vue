@@ -104,7 +104,6 @@ const submitForm = (formEl: FormInstance | undefined) => {
   background-repeat: no-repeat;
   background-size: 80%;
   .card {
-    background-color: $header-bgc-color !important;
     position: relative;
     box-sizing: border-box;
     height: 300px;
