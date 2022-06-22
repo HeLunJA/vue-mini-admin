@@ -8,6 +8,7 @@ type tabItem = {
   path: string
 }
 type globalState = {
+  isViewFlag: boolean,
   token: string
   tabList: tabItem[]
   routerList: TRouterItem[]
@@ -16,12 +17,16 @@ export const useGlobalStore = defineStore({
   id: 'tab',
   state: (): globalState => {
     return {
+      isViewFlag: true,
       token: '',
       tabList: [{ name: 'home', path: '/home', label: '首页概况' }],
       routerList: []
     }
   },
   actions: {
+    updateViewFlag(isViewFlag: boolean) {
+      this.isViewFlag = isViewFlag
+    },
     updateRouterList(list: TRouterItem[]) {
       this.routerList = setRouter(list)
     },

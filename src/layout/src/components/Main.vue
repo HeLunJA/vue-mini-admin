@@ -1,7 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useGlobalStore } from '@/store/global'
+const globalStore = useGlobalStore()
+const isViewFlag = computed(() => globalStore.isViewFlag)
+</script>
 
 <template>
-  <div class="main">
+  <div class="main" v-if="isViewFlag">
     <router-view v-slot="{ Component }">
       <transition name="scale" mode="out-in" appear>
         <component :is="Component" />

@@ -2,7 +2,7 @@
 import { useRouter, useRoute } from 'vue-router'
 import { computed } from 'vue'
 import { themeStore } from '@/store/theme'
-import MenuItem from '@/layout/components/MenuItem.vue'
+import MenuItem from '@/layout/src/components/MenuItem.vue'
 import { useGlobalStore } from '@/store/global'
 const store = themeStore()
 const globalStore = useGlobalStore()

@@ -6,9 +6,9 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     redirect: { name: 'home' },
     name: 'main',
-    component: () => import('@/layout/layout.vue'),
+    component: () => import('@/layout'),
     children: [
-      { name: 'home', path: 'home', component: () => import('@/views/main/home/home.vue'), meta: { label: '首页概况' } }
+      { name: 'home', path: 'home', component: () => import('@/views/main/home'), meta: { label: '首页概况' } }
     ]
   },
   {

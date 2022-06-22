@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, watch } from 'vue'
+import { computed, watch, nextTick } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useSwitchDark } from '@/hooks/useChangeTheme'
 import { useGlobalStore } from '@/store/global'
@@ -19,9 +19,10 @@ const tabAction = (name: string) => {
 const tabClose = (name: string) => {
   gloablStore.removeTab(name, route.name as string)
 }
-const refresh = (name: string) => {
-  router.replace({
-    name
+const refresh = () => {
+  gloablStore.updateViewFlag(false)
+  nextTick(() => {
+    gloablStore.updateViewFlag(true)
   })
 }
 const pagesClose = (item: ItabItem) => {
@@ -48,6 +49,7 @@ watch(
       :class="{ 'tab-item': true, 'tab-active': route.name === item.name }"
       @click="tabAction(item.name)"
       @close="tabClose(item.name)"
+      :key="item.name"
     >
       <el-dropdown trigger="contextmenu">
         <span>
@@ -55,7 +57,7 @@ watch(
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item @click="refresh(item.name)">刷新页面</el-dropdown-item>
+            <el-dropdown-item @click="refresh">刷新页面</el-dropdown-item>
             <el-dropdown-item @click="tabClose(item.name)">关闭当前页</el-dropdown-item>
             <el-dropdown-item @click="pagesClose(item)">关闭其他页</el-dropdown-item>
           </el-dropdown-menu>
