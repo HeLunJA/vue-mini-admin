@@ -5,7 +5,7 @@ import Main from './components/Main.vue'
 import Tab from './components/Tab.vue'
 import { useSwitchDark } from '@/hooks/useChangeTheme'
 import { computed, onMounted } from 'vue'
-import MenuSearch from '@/components/MenuSearch/index.vue'
+import MenuSearch from '@/components/MenuSearch'
 import { themeStore } from '@/store/theme'
 const store = themeStore()
 const isCollapse = computed(() => store.isCollapse)

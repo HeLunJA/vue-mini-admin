@@ -15,6 +15,7 @@ import {
 } from '@/enums/theme'
 import Sun from './components/Sun.vue'
 import Moon from './components/Moon.vue'
+type changeType = (val: string | number | boolean) => any
 const isDark = useSwitchDark()
 const switchColor = computed(() => (isDark.value ? '#1d1e1f' : '#606266'))
 watch(
@@ -32,7 +33,6 @@ watch(
   },
   { immediate: true }
 )
-type changeType = (val: string | number | boolean) => any
 const handleChange = useDarkThemeChange as changeType
 </script>
 

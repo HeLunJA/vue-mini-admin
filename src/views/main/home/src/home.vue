@@ -29,7 +29,7 @@ import { useSwitchDark } from '@/hooks/useChangeTheme'
 import { useGetGeneralData } from './hooks/useGetGeneralData'
 const isDark = useSwitchDark()
 const spaceColor = computed(() => (isDark.value ? '#3b3636 ' : '#ffffff'))
-// 获取昨日概况数据和骨架屏状态属性
+// 获取昨日概况数据和骨架屏状态
 const { generals, isSkeleton } = useGetGeneralData()
 </script>
 <style lang="scss" scoped>

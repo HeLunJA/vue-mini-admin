@@ -5,7 +5,7 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    DarkThemeSwitch: typeof import('./src/components/DarkThemeSwitch/index.vue')['default']
+    DarkThemeSwitch: typeof import('./src/components/DarkThemeSwitch/src/DarkThemeSwitch.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
@@ -31,11 +31,11 @@ declare module '@vue/runtime-core' {
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     ElTag: typeof import('element-plus/es')['ElTag']
-    MenuSearch: typeof import('./src/components/MenuSearch/index.vue')['default']
-    Moon: typeof import('./src/components/DarkThemeSwitch/components/Moon.vue')['default']
+    MenuSearch: typeof import('./src/components/MenuSearch/src/MenuSearch.vue')['default']
+    Moon: typeof import('./src/components/DarkThemeSwitch/src/components/Moon.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Sun: typeof import('./src/components/DarkThemeSwitch/components/Sun.vue')['default']
+    Sun: typeof import('./src/components/DarkThemeSwitch/src/components/Sun.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon/index.vue')['default']
   }
 }

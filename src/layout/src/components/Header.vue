@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import DarkThemeSwitch from '@/components/DarkThemeSwitch/index.vue'
+import DarkThemeSwitch from '@/components/DarkThemeSwitch'
 import Breadcrumb from './Breadcrumb.vue'
 import { useRouter } from 'vue-router'
 import { useGlobalStore } from '@/store/global'
