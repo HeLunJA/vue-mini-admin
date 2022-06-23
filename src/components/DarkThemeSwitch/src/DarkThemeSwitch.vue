@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed, watch } from 'vue'
 import { useSwitchDark, useDarkThemeChange } from '@/hooks/useChangeTheme'
 import { setStyleVar } from '@/utils/setTheme'
 import {

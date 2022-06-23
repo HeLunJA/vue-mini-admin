@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useRouter, useRoute } from 'vue-router'
-import { computed } from 'vue'
 import { themeStore } from '@/store/theme'
 import MenuItem from '@/layout/src/components/MenuItem.vue'
 import { useGlobalStore } from '@/store/global'

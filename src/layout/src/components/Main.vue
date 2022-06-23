@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import { useGlobalStore } from '@/store/global'
 const globalStore = useGlobalStore()
 const isViewFlag = computed(() => globalStore.isViewFlag)

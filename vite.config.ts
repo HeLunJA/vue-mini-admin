@@ -19,14 +19,16 @@ export default ({ mode }) => {
         supportTs: true
       }),
       AutoImport({
-        resolvers: [ElementPlusResolver()]
+        imports: ['vue', 'vue-router'],
+        dts: 'src/types/auto-import.d.ts'
       }),
       Components({
+        dts: 'src/types/component.d.ts',
         resolvers: [ElementPlusResolver()]
       }),
       createSvgIconsPlugin({
         iconDirs: [path.resolve(process.cwd(), 'src/assets/svg')]
-      }),
+      })
     ],
     resolve: {
       alias: {

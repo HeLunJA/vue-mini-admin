@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import DarkThemeSwitch from '@/components/DarkThemeSwitch'
-import Breadcrumb from './Breadcrumb.vue'
-import { useRouter } from 'vue-router'
+import Breadcrumb from './Breadcrumb'
 import { useGlobalStore } from '@/store/global'
 import { themeStore } from '@/store/theme'
-import { computed } from 'vue'
 const gloablStore = useGlobalStore()
 const theme_store = themeStore()
 const router = useRouter()

@@ -24,7 +24,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { computed } from 'vue'
 import { useSwitchDark } from '@/hooks/useChangeTheme'
 import { useGetGeneralData } from './hooks/useGetGeneralData'
 const isDark = useSwitchDark()

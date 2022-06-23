@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
-import { computed } from 'vue'
 const route = useRoute()
 const brandList = computed(() => route.matched.filter((item) => item.path !== '/'))
 </script>

@@ -14,7 +14,7 @@
   </template>
 </template>
 <script lang="ts" setup>
-import { useRouter, RouteRecordName } from 'vue-router'
+import type { RouteRecordName } from 'vue-router'
 type Props = {
   menuList: TRouterItem[]
 }

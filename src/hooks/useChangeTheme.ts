@@ -1,4 +1,3 @@
-import { computed } from 'vue'
 import { themeStore } from '@/store/theme'
 const store = themeStore()
 function useSwitchDark() {

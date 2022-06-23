@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
-import { useRouter } from 'vue-router'
 import { login } from '@/service/login'
 import type { FormInstance } from 'element-plus'
 import { ElMessage } from 'element-plus'

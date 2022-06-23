@@ -5,7 +5,6 @@ import Main from './components/Main.vue'
 import Tab from './components/Tab.vue'
 import MenuSearch from '@/components/MenuSearch'
 import { themeStore } from '@/store/theme'
-import { computed, onMounted } from 'vue'
 const store = themeStore()
 const isCollapse = computed(() => store.isCollapse)
 const rotate = computed(() => (isCollapse.value ? 'rotate(0deg)' : 'rotate(180deg)'))
