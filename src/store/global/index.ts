@@ -8,7 +8,7 @@ type tabItem = {
   path: string
 }
 type globalState = {
-  isViewFlag: boolean,
+  isViewFlag: boolean
   token: string
   tabList: tabItem[]
   routerList: TRouterItem[]

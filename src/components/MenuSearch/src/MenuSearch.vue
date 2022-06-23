@@ -13,7 +13,6 @@
 </template>
 
 <script lang="ts" setup>
-
 interface ListItem {
   value: string
   label: string

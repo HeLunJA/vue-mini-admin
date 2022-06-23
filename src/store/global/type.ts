@@ -4,6 +4,6 @@ export interface ItabItem {
   path: string
 }
 export interface IGlobalState {
-  token: string,
+  token: string
   tabList: ItabItem[]
 }

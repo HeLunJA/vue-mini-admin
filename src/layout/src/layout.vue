@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import Menu from './components/Menu.vue'
-import Header from './components/Header.vue'
-import Main from './components/Main.vue'
-import Tab from './components/Tab.vue'
+import Menu from './components/Menu'
+import Header from './components/Header'
+import Main from './components/Main'
+import Tab from './components/Tab'
 import MenuSearch from '@/components/MenuSearch'
 import { themeStore } from '@/store/theme'
 const store = themeStore()

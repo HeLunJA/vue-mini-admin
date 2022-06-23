@@ -5,7 +5,6 @@ function useAnimatedNumber(
   duration: number = 0.5,
   toFixed: number = 0
 ): WritableComputedRef<number> {
-  console.log(number)
   const refNumber = ref<number>(unref(number))
   const targetNumber = ref<number>(0)
   const animatedNumber = computed<number>({

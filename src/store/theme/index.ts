@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { useDark } from '@vueuse/core'
 import type { WritableComputedRef } from 'vue'
 type themeState = {
-  isDark: WritableComputedRef<boolean>,
+  isDark: WritableComputedRef<boolean>
   isCollapse: boolean
 }
 export const themeStore = defineStore({

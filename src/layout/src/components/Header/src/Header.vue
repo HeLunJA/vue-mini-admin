@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import DarkThemeSwitch from '@/components/DarkThemeSwitch'
-import Breadcrumb from './Breadcrumb'
+import Breadcrumb from '../../Breadcrumb'
 import { useGlobalStore } from '@/store/global'
 import { themeStore } from '@/store/theme'
 const gloablStore = useGlobalStore()
