@@ -3,13 +3,11 @@ import Menu from './components/Menu.vue'
 import Header from './components/Header.vue'
 import Main from './components/Main.vue'
 import Tab from './components/Tab.vue'
-import { useSwitchDark } from '@/hooks/useChangeTheme'
-import { computed, onMounted } from 'vue'
 import MenuSearch from '@/components/MenuSearch'
 import { themeStore } from '@/store/theme'
+import { computed, onMounted } from 'vue'
 const store = themeStore()
 const isCollapse = computed(() => store.isCollapse)
-const isDark = useSwitchDark()
 const rotate = computed(() => (isCollapse.value ? 'rotate(0deg)' : 'rotate(180deg)'))
 const collapseWidth = computed(() => (isCollapse.value ? '64px' : '200px'))
 const changeMenu = () => {

@@ -4,10 +4,7 @@ import Breadcrumb from './Breadcrumb.vue'
 import { useRouter } from 'vue-router'
 import { useGlobalStore } from '@/store/global'
 import { themeStore } from '@/store/theme'
-import { useSwitchDark } from '@/hooks/useChangeTheme'
 import { computed } from 'vue'
-const isDark = useSwitchDark()
-const themeColor = computed(() => (isDark.value ? '#fff' : '#303133'))
 const gloablStore = useGlobalStore()
 const theme_store = themeStore()
 const router = useRouter()
