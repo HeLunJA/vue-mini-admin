@@ -12,8 +12,8 @@ import {
   BASE_BGC_COLOR_DARK,
   BASE_BGC_COLOR_LIGHT
 } from '@/enums/theme'
-import Sun from './components/Sun.vue'
-import Moon from './components/Moon.vue'
+import SunSvg from './components/SunSvg.vue'
+import MoonSvg from './components/MoonSvg.vue'
 type changeType = (val: string | number | boolean) => any
 const isDark = useSwitchDark()
 const switchColor = computed(() => (isDark.value ? '#1d1e1f' : '#606266'))
@@ -39,10 +39,10 @@ const handleChange = useDarkThemeChange as changeType
   <el-switch
     class="switch"
     :value="isDark"
-    @change="handleChange"
     inline-prompt
-    :active-icon="Sun"
-    :inactive-icon="Moon"
+    :active-icon="SunSvg"
+    :inactive-icon="MoonSvg"
+    @change="handleChange"
   />
 </template>
 

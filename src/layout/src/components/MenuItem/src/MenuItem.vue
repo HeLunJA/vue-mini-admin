@@ -1,13 +1,13 @@
 <template>
-  <template v-for="(item, index) in props.menuList">
-    <el-sub-menu :index="item.name" v-if="item.children" :key="item.name">
+  <template v-for="item in props.menuList">
+    <el-sub-menu v-if="item.children" :key="item.name" :index="item.name">
       <template #title>
         <el-icon><component :is="item.meta.icon"></component></el-icon>
         <span>{{ item.meta.label }}</span>
       </template>
-      <MenuItem :menuList="item.children" />
+      <MenuItem :menu-list="item.children" />
     </el-sub-menu>
-    <el-menu-item v-else :index="item.name" @click="action(item.name)" :key="(item.name as RouteRecordName)">
+    <el-menu-item v-else :key="(item.name as RouteRecordName)" :index="item.name" @click="action(item.name)">
       <el-icon><component :is="item.meta.icon"></component></el-icon>
       <template #title>{{ item.meta.label }}</template>
     </el-menu-item>

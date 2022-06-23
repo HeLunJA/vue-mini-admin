@@ -1,0 +1,88 @@
+<script setup lang="ts">
+import LayoutMenu from './components/LayoutMenu'
+import LayoutHeader from './components/LayoutHeader'
+import LayoutMain from './components/LayoutMain'
+import LayoutTab from './components/LayoutTab'
+import MenuSearch from '@/components/MenuSearch'
+import { themeStore } from '@/store/theme'
+const store = themeStore()
+const isCollapse = computed(() => store.isCollapse)
+const rotate = computed(() => (isCollapse.value ? 'rotate(0deg)' : 'rotate(180deg)'))
+const collapseWidth = computed(() => (isCollapse.value ? '64px' : '200px'))
+const changeMenu = () => {
+  store.updateCollapse()
+}
+onMounted(() => {
+  window.onresize = () => {
+    return (() => {
+      if (
+        (isCollapse.value === false && document.body.clientWidth < 1200) ||
+        (isCollapse.value === true && document.body.clientWidth > 1200)
+      ) {
+        store.updateCollapse()
+      }
+    })()
+  }
+})
+</script>
+
+<template>
+  <el-container class="layout">
+    <el-header class="header"><LayoutHeader /></el-header>
+    <el-container class="container">
+      <el-aside class="aside" :width="collapseWidth">
+        <el-scrollbar>
+          <div class="search">
+            <MenuSearch v-if="!isCollapse" class="margin-left-8px" />
+            <component :is="'Expand'" class="expand" @click="changeMenu"></component>
+          </div>
+          <LayoutMenu />
+        </el-scrollbar>
+      </el-aside>
+      <el-main>
+        <LayoutTab />
+        <LayoutMain />
+      </el-main>
+    </el-container>
+  </el-container>
+</template>
+
+<style lang="scss" scoped>
+.margin-left-8px {
+  margin-right: 8px;
+}
+.layout {
+  min-width: 1200px;
+  .header {
+    border-bottom: 1px solid $theme-border-color;
+    box-sizing: border-box;
+  }
+  .container {
+    height: calc(100vh - 60px);
+  }
+  .aside {
+    height: 100%;
+    .search {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      padding: 0px 8px;
+      border-right: 1px solid $theme-border-color;
+      box-sizing: border-box;
+      width: v-bind(collapseWidth);
+      .expand {
+        width: 18px;
+        height: 18px;
+        transform: v-bind(rotate);
+      }
+    }
+  }
+  :deep(.el-main) {
+    background: $base-bgc-color;
+  }
+  :deep(.el-aside) {
+    transition: all 0.2s ease;
+  }
+}
+</style>

@@ -8,18 +8,23 @@ const routes: RouteRecordRaw[] = [
     name: 'main',
     component: () => import('@/layout'),
     children: [
-      { name: 'home', path: 'home', component: () => import('@/views/main/home'), meta: { label: '首页概况' } }
+      {
+        name: 'home',
+        path: 'home',
+        component: () => import('@/views/HomePage/HomePage.vue'),
+        meta: { label: '首页概况' }
+      }
     ]
   },
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/views/login')
+    component: () => import('@/views/LoginPage/LoginPage.vue')
   },
   {
     path: '/:pathMatch(.*)*',
     name: 'notFound',
-    component: () => import('@/views/not-found/not-found.vue')
+    component: () => import('@/views/NotFound/NotFound.vue')
   }
 ]
 

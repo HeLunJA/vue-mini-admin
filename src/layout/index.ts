@@ -1,2 +1,2 @@
-import layout from './src/layout.vue'
-export default layout
+import pageLayout from './src/pageLayout.vue'
+export default pageLayout
