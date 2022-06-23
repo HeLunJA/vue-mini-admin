@@ -40,7 +40,7 @@ const routers: any = [
         meta: {
           label: '表格组件',
           icon: 'Edit',
-          componentPath: '/componentViews/table/DynamicTable'
+          componentPath: '/componentViews/DynamicTable'
         }
       }
     ]
