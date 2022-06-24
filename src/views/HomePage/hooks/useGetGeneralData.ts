@@ -14,8 +14,7 @@ export function useGetGeneralData(): { isSkeleton: Ref<boolean>; generals: Ref<I
     { label: '分享人数', icon: 'fx', number: null },
     { label: '评论人数', icon: 'pl', number: null }
   ])
-  onMounted(async () => {
-    const result = await getGeneralData()
+  getGeneralData().then((result) => {
     const numbers: number[] = result.data.list
     numbers.forEach((item, index) => {
       generals.value[index].number = useAnimatedNumber(item) as unknown as number

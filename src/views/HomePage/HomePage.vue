@@ -32,16 +32,38 @@
 <script lang="ts" setup>
 import { useSwitchDark } from '@/hooks/useChangeTheme'
 import { useGetGeneralData } from './hooks/useGetGeneralData'
-import { useSetEchartBar } from './hooks/useSetEchartBar'
+import { useCreateEcharts } from '@/hooks/useCreateEcharts'
+import type { EChartsOption } from 'echarts'
+import type { Ref } from 'vue'
 const echartDom = ref<HTMLDivElement>()
 const isDark = useSwitchDark()
 const spaceColor = computed(() => (isDark.value ? '#3b3636 ' : '#ffffff'))
 // 获取昨日概况数据和骨架屏状态
 const { generals, isSkeleton } = useGetGeneralData()
+const barOptions: EChartsOption = {
+  backgroundColor: '',
+  legend: {},
+  tooltip: {},
+  dataset: {
+    source: [
+      ['product', '点赞人数', '收藏人数', '分享人数', '评论人数'],
+      ['6-18', 56821, 56258, 45123],
+      ['6-19', 45478, 98562, 23584],
+      ['6-20', 25487, 65658, 12521],
+      ['6-21', 32541, 52487, 35648],
+      ['6-22', 83321, 73244, 55121],
+      ['6-23', 86454, 65352, 82255],
+      ['6-24', 72040, 53229, 39001]
+    ]
+  },
+  xAxis: { type: 'category' },
+  yAxis: {},
+  series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
+}
 onMounted(() => {
   // 七日概況柱状图
-  const { setOptions, options } = useSetEchartBar(echartDom)
-  setOptions(options)
+  const { setOptions } = useCreateEcharts(echartDom as Ref<HTMLDivElement>)
+  setOptions(barOptions)
 })
 </script>
 <style lang="scss" scoped>
