@@ -24,7 +24,7 @@
     <el-card class="card">
       <div class="title">七日概况</div>
       <div class="echartBox">
-        <div ref="echartDom" style="width: 500px; height: 300px"></div>
+        <div ref="echartDom" style="width: 100%; height: 300px"></div>
       </div>
     </el-card>
   </div>
@@ -33,14 +33,15 @@
 import { useSwitchDark } from '@/hooks/useChangeTheme'
 import { useGetGeneralData } from './hooks/useGetGeneralData'
 import { useSetEchartBar } from './hooks/useSetEchartBar'
-const echartDom = ref<HTMLElement>()
+const echartDom = ref<HTMLDivElement>()
 const isDark = useSwitchDark()
 const spaceColor = computed(() => (isDark.value ? '#3b3636 ' : '#ffffff'))
 // 获取昨日概况数据和骨架屏状态
 const { generals, isSkeleton } = useGetGeneralData()
 onMounted(() => {
   // 七日概況柱状图
-  useSetEchartBar(echartDom.value as HTMLElement)
+  const { setOptions, options } = useSetEchartBar(echartDom)
+  setOptions(options)
 })
 </script>
 <style lang="scss" scoped>

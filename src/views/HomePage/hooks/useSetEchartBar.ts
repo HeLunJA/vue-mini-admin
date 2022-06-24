@@ -1,7 +1,7 @@
-import { optionType, useCreateEcharts } from '@/hooks/echarts/useCreateEcharts'
-import { barType, echartComponents } from '@/hooks/echarts/barGraph'
-export function useSetEchartBar(dom: HTMLElement) {
-  const options: optionType<barType> = {
+import type { Ref } from 'vue'
+import { useCreateEcharts } from '@/hooks/useCreateEcharts'
+export function useSetEchartBar(dom: Ref<HTMLDivElement | undefined>) {
+  const options: any = {
     backgroundColor: '',
     legend: {},
     tooltip: {},
@@ -21,5 +21,6 @@ export function useSetEchartBar(dom: HTMLElement) {
     yAxis: {},
     series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
   }
-  useCreateEcharts<barType>(dom, options, echartComponents)
+  const { setOptions } = useCreateEcharts(dom as Ref<HTMLDivElement>)
+  return { setOptions, options }
 }

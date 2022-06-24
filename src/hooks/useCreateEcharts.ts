@@ -12,12 +12,17 @@ export function useCreateEcharts(el: Ref<HTMLDivElement>) {
   }
   function setOptions(options: EChartsOption) {
     echartOptions.value = options
+    if (!myEchart) {
+      initEcharts(isDark.value ? 'dark' : 'default')
+    } else {
+      myEchart?.dispose()
+      initEcharts(isDark.value ? 'dark' : 'default')
+    }
     myEchart?.setOption(options)
   }
   watch(
     () => isDark.value,
-    (themeVal) => {
-      initEcharts(themeVal ? 'dark' : 'default')
+    () => {
       setOptions(echartOptions.value as EChartsOption)
     }
   )
