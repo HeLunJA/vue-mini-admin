@@ -1,7 +1,7 @@
 import { MockMethod } from 'vite-plugin-mock'
 // 登录接口
 const login: MockMethod = {
-  url: '/api/login',
+  url: '/api/mockLogin',
   method: 'post',
   timeout: 500,
   response: (data: any) => {
@@ -47,7 +47,7 @@ const routers: any = [
   }
 ]
 const routerList: MockMethod = {
-  url: '/api/getRouterList',
+  url: '/api/mockGetRouterList',
   method: 'get',
   timeout: 200,
   response: () => {
@@ -58,7 +58,7 @@ const routerList: MockMethod = {
 }
 // 昨日概况数据
 const generalData: MockMethod = {
-  url: '/api/getGeneralData',
+  url: '/api/mockGetGeneralData',
   method: 'get',
   timeout: 1500,
   response: () => {

@@ -10,20 +10,12 @@ const config: AxiosRequestConfig = {
 
 const instance: AxiosInstance = axios.create(config)
 // 请求拦截器
-instance.interceptors.request.use(
-  (config) => {
-    const globalStore = useGlobalStore()
-    return globalStore.token ? { ...config, headers: { token: globalStore.token } } : config
-  },
-  (err) => {
-  }
-)
+instance.interceptors.request.use((config) => {
+  const globalStore = useGlobalStore()
+  return globalStore.token ? { ...config, headers: { token: globalStore.token } } : config
+})
 // 响应拦截器
-instance.interceptors.response.use(
-  (config) => {
-    return config
-  },
-  (err) => {
-  }
-)
+instance.interceptors.response.use((config) => {
+  return config
+})
 export { instance }

@@ -43,11 +43,15 @@ router.beforeEach(async (to, from, next) => {
     if (globalStore.routerList.length) {
       next()
     } else {
-      const routerList: TRouterItem[] = await globalStore.getRouter()
-      routerList.forEach((route) => {
-        router.addRoute(route)
-      })
-      next({ path: to.path as string, replace: true })
+      if (globalStore.token) {
+        const routerList: TRouterItem[] = await globalStore.getRouter()
+        routerList.forEach((route) => {
+          router.addRoute(route)
+        })
+        next({ path: to.path as string, replace: true })
+      } else {
+        next()
+      }
     }
   }
 })
