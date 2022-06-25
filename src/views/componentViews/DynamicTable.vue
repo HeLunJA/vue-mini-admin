@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { columnProps } from '@/types/elComponent'
-const columnOptions: columnProps[] = [
+const columnOptions = ref<columnProps[]>([
   { label: '时间', prop: 'date', align: 'center' },
   { label: '姓名', prop: 'name', align: 'center' },
   { label: '地址', prop: 'address', align: 'center' }
-]
+])
 const tableData = ref([
   {
     date: '2016-05-03',
