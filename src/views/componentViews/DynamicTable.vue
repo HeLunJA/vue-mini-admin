@@ -2,8 +2,16 @@
 import { columnProps } from '@/types/elComponent'
 const columnOptions = ref<columnProps[]>([
   { label: '时间', prop: 'date', align: 'center' },
-  { label: '姓名', prop: 'name', align: 'center' },
-  { label: '地址', prop: 'address', align: 'center' }
+  { label: '地址', prop: 'address', align: 'center' },
+  {
+    label: '信息',
+    prop: 'info',
+    align: 'center',
+    children: [
+      { label: '年龄', prop: 'age', align: 'center' },
+      { label: '姓名', prop: 'name', align: 'center' }
+    ]
+  }
 ])
 const tableData = ref([
   {
@@ -29,6 +37,6 @@ const tableData = ref([
 ])
 </script>
 <template>
-  <PageTable :columns="columnOptions" :data="tableData" />
+  <PageTable :columns="columnOptions" :data="tableData" border />
 </template>
 <style scoped></style>

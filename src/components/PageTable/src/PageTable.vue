@@ -10,7 +10,9 @@ withDefaults(defineProps<IPageTableProps>(), {
 </script>
 <template>
   <el-table v-bind="$attrs">
-    <el-table-column v-for="item in columns" :key="item.prop" v-bind="item" />
+    <el-table-column v-for="item in columns" :key="item.prop" v-bind="item">
+      <el-table-column v-if="item.children && item.children.length"></el-table-column>
+    </el-table-column>
   </el-table>
 </template>
 <style lang="scss" scoped></style>
