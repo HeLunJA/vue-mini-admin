@@ -40,6 +40,7 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     SunSvg: typeof import('./../components/DarkThemeSwitch/src/components/SunSvg.vue')['default']
     SvgIcon: typeof import('./../components/SvgIcon/src/SvgIcon.vue')['default']
+    TableColumn: typeof import('./../components/PageTable/src/components/TableColumn.vue')['default']
   }
 }
 
