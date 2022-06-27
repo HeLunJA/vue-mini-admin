@@ -1,12 +1,12 @@
 <template>
   <el-table-column v-if="itemProp?.slot" v-bind="itemProp">
-    <!-- <template #default="scope">
+    <template #default="scope">
       <slot :name="itemProp.slot" :row="scope.row" />
-    </template> -->
+    </template>
   </el-table-column>
   <el-table-column v-else-if="itemProp?.childrenColumns && itemProp.childrenColumns.length" v-bind="itemProp">
     <table-column v-for="childrenItem in itemProp.childrenColumns" :key="childrenItem.prop" :item-prop="childrenItem">
-      <template v-for="slot in Object.keys(slots)" #[slot]="data">
+      <template v-for="slot in Object.keys(slots)" #[slot]="data" :key="slot">
         <slot :name="slot" v-bind="data" />
       </template>
     </table-column>
