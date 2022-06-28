@@ -5,7 +5,7 @@ const columnOptions = ref<columnProps[]>([
     label: '信息',
     show: false,
     childrenColumns: [
-      { label: '姓名', prop: 'name', slot: 'name', show: false },
+      { label: '姓名', prop: 'name', slot: 'name' },
       { label: '年龄', prop: 'age' }
     ]
   },

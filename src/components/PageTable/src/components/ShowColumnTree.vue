@@ -22,7 +22,6 @@ const defaultProps = {
 }
 const handleChange = (node, checked, isChildrenChecked) => {
   if (node.childrenColumns && node.childrenColumns.length) {
-    // isChildrenChecked为子集是否有选中状态的节点,如果有,父级节点就设置为选中状态,反之就设置为当前状态checked
     if (isChildrenChecked) {
       node.show = true
     } else {

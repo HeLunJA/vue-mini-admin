@@ -13,23 +13,22 @@ const props = withDefaults(defineProps<IPageTableProps>(), {
 const defaultShowKeys = ref<string[]>([])
 const setColumns = (columns: columnProps[], parent?: parentType) => {
   columns.forEach((item, index) => {
-    // 给每一列加上唯一ID,格式为: '1-2-3'
     item.id = index.toString()
     if (parent?.parentIndex || parent?.parentIndex === 0) {
       item.id += '-' + index
     }
-    // 如果传入的column没有带show属性,则默认添加上show:true,默认该列显示
-    if (!('show' in item)) {
-      item.show = true
+    if (typeof parent !== 'undefined') {
+      item.show = parent.parentShow
+    } else {
+      if (!('show' in item)) {
+        item.show = true
+      }
     }
     if (item.childrenColumns && item.childrenColumns.length) {
       setColumns(item.childrenColumns, { parentShow: item.show, parentIndex: index })
     } else {
       if (item.show) {
-        // show为true时,将唯一ID加入defaultShowKeys数组回显默认显示的列checkboxs树,如果该列有show属性并且有子集则父级show属性会覆盖所有子集的show属性
-        if (typeof parent === 'undefined' || (typeof parent.parentShow === 'boolean' && parent.parentShow)) {
-          defaultShowKeys.value.push(item.id)
-        }
+        defaultShowKeys.value.push(item.id)
       }
     }
   })
@@ -48,7 +47,7 @@ const slots = useSlots()
 <template>
   <div class="option">
     <div></div>
-    <el-popover placement="left-start" trigger="hover">
+    <el-popover popper-class="down-popover" placement="left-start" trigger="click">
       <template #reference>
         <component :is="'Operation'" class="operation"></component>
       </template>
@@ -63,6 +62,14 @@ const slots = useSlots()
     </table-column>
   </el-table>
 </template>
+<style lang="scss">
+.down-popover {
+  background: $theme--card-bgc-color !important;
+  .el-tree {
+    background: $theme--card-bgc-color !important;
+  }
+}
+</style>
 <style lang="scss" scoped>
 .table :deep(.cell) {
   height: 20px !important; //固定表头高度,解决列显隐表格抖动
