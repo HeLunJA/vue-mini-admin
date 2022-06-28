@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import screenfull from 'screenfull'
 import DarkThemeSwitch from '@/components/DarkThemeSwitch'
 import LayoutBreadcrumb from '../../LayoutBreadcrumb'
 import { useGlobalStore } from '@/store/global'
@@ -17,6 +18,11 @@ const loginOut = () => {
       gloablStore.updateTabList([{ name: 'home', path: '/home', label: '首页概况' }])
       gloablStore.updateToken('')
     })
+}
+const toggleFullscreen = () => {
+  if (screenfull.isEnabled) {
+    screenfull.toggle()
+  }
 }
 </script>
 
@@ -41,6 +47,7 @@ const loginOut = () => {
           </el-dropdown-menu>
         </template>
       </el-dropdown>
+      <el-button @click="toggleFullscreen">全屏</el-button>
     </div>
   </div>
 </template>
