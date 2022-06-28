@@ -35,7 +35,6 @@ declare module '@vue/runtime-core' {
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTag: typeof import('element-plus/es')['ElTag']
     ElTree: typeof import('element-plus/es')['ElTree']
-    ElTreeV2: typeof import('element-plus/es')['ElTreeV2']
     MenuSearch: typeof import('./../components/MenuSearch/src/MenuSearch.vue')['default']
     MoonSvg: typeof import('./../components/DarkThemeSwitch/src/components/MoonSvg.vue')['default']
     PageTable: typeof import('./../components/PageTable/src/PageTable.vue')['default']

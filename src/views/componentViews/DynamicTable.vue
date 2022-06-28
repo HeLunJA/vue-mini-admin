@@ -3,16 +3,14 @@ import { columnProps } from '@/types/elComponent'
 const columnOptions = ref<columnProps[]>([
   {
     label: '信息',
-    prop: 'info',
     show: false,
-    align: 'center',
     childrenColumns: [
-      { label: '姓名', prop: 'name', align: 'center', slot: 'name' },
-      { label: '年龄', prop: 'age', align: 'center', show: false }
+      { label: '姓名', prop: 'name', slot: 'name', show: false },
+      { label: '年龄', prop: 'age' }
     ]
   },
-  { label: '时间', prop: 'date', align: 'center', slot: 'date' },
-  { label: '地址', prop: 'address', align: 'center', slot: 'address', show: false }
+  { label: '时间', prop: 'date', slot: 'date' },
+  { label: '地址', prop: 'address', slot: 'address' }
 ])
 const tableData = ref([
   {
