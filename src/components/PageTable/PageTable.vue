@@ -1,15 +1,30 @@
 <script lang="ts" setup>
-import { columnProps, tableProps } from '@/types/elComponent'
+import { columnProps, tableProps, paginationProps } from '@/types/elComponent'
+interface IPagination extends paginationProps {
+  currentPage?: number
+  pageSize?: number
+}
 interface IPageTableProps extends tableProps {
-  columns: columnProps[] | null
+  columns: columnProps[]
+  paginationConfig?: IPagination
 }
 interface parentType {
   parentShow: boolean | undefined
   parentIndex: string | number
 }
 const props = withDefaults(defineProps<IPageTableProps>(), {
-  columns: null
+  paginationConfig: (): IPagination => {
+    return {
+      currentPage: 1,
+      pageSize: 10,
+      pageSizes: [10, 30, 50, 100],
+      layout: 'total, sizes, prev, pager, next, jumper'
+    }
+  }
 })
+const currentPage = toRef(props.paginationConfig, 'currentPage')
+const pageSize = toRef(props.paginationConfig, 'pageSize')
+const tableTotal = ref(0)
 const defaultShowKeys = ref<string[]>([])
 const setColumns = (columns: columnProps[], parent?: parentType) => {
   columns.forEach((item, index) => {
@@ -32,6 +47,12 @@ const setColumns = (columns: columnProps[], parent?: parentType) => {
       }
     }
   })
+}
+const handleSizeChange = (val: number) => {
+  pageSize.value = val
+}
+const handleCurrentChange = (val: number) => {
+  currentPage.value = val
 }
 watch(
   () => props.columns,
@@ -61,6 +82,16 @@ const slots = useSlots()
       </template>
     </table-column>
   </el-table>
+  <div class="pagination">
+    <el-pagination
+      v-bind="paginationConfig"
+      v-model:currentPage="currentPage"
+      v-model:page-size="pageSize"
+      :total="tableTotal"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+    />
+  </div>
 </template>
 <style lang="scss">
 .down-popover {
@@ -83,5 +114,11 @@ const slots = useSlots()
     width: 20px;
     height: 20px;
   }
+}
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 18px;
 }
 </style>

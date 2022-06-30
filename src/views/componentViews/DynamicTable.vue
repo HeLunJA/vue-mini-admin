@@ -2,15 +2,18 @@
 import { columnProps } from '@/types/elComponent'
 const columnOptions = ref<columnProps[]>([
   {
-    label: '信息',
-    show: false,
-    childrenColumns: [
-      { label: '姓名', prop: 'name', slot: 'name' },
-      { label: '年龄', prop: 'age' }
-    ]
+    label: '登录日期',
+    prop: 'date'
   },
-  { label: '时间', prop: 'date', slot: 'date' },
-  { label: '地址', prop: 'address', slot: 'address' }
+  {
+    label: '用户信息',
+    childrenColumns: [
+      { label: '头像', prop: 'headPhoto' },
+      { label: '姓名', prop: 'name', slot: 'name' },
+      { label: '年龄', prop: 'age' },
+      { label: '地址', prop: 'address', slot: 'address' }
+    ]
+  }
 ])
 const tableData = ref([
   {

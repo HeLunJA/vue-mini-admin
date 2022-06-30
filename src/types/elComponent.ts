@@ -1,6 +1,7 @@
-import { ElTableColumn, ElTable } from 'element-plus'
+import { ElTableColumn, ElTable, ElPagination } from 'element-plus'
 export type column = InstanceType<typeof ElTableColumn>['$props']
 export type tableProps = InstanceType<typeof ElTable>['$props']
+export type paginationProps = InstanceType<typeof ElPagination>['$props']
 export type columnProps = column & {
   show?: boolean
   childrenColumns?: columnProps[]
