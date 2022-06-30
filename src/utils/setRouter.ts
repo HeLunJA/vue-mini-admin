@@ -3,7 +3,7 @@ export default function setRouter(list: TRouterItem[]): TRouterItem[] {
   list.map((item) => {
     item.meta.componentPath && (item.component = modules[`../views${item.meta.componentPath}.vue`])
     if (item.children && item.children.length) {
-      item.component = () => import('@/layout')
+      item.component = () => import('@/layout/pageLayout.vue')
       setRouter(item.children)
     }
   })

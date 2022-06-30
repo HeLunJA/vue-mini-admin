@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { themeStore } from '@/store/theme'
-import MenuItem from '@/layout/src/components/MenuItem'
+import MenuItem from './MenuItem.vue'
 import { useGlobalStore } from '@/store/global'
 const store = themeStore()
 const globalStore = useGlobalStore()

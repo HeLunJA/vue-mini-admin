@@ -5,7 +5,7 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    DarkThemeSwitch: typeof import('./../components/DarkThemeSwitch/src/DarkThemeSwitch.vue')['default']
+    DarkThemeSwitch: typeof import('./../components/DarkThemeSwitch/DarkThemeSwitch.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
@@ -35,15 +35,15 @@ declare module '@vue/runtime-core' {
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTag: typeof import('element-plus/es')['ElTag']
     ElTree: typeof import('element-plus/es')['ElTree']
-    MenuSearch: typeof import('./../components/MenuSearch/src/MenuSearch.vue')['default']
-    MoonSvg: typeof import('./../components/DarkThemeSwitch/src/components/MoonSvg.vue')['default']
-    PageTable: typeof import('./../components/PageTable/src/PageTable.vue')['default']
+    MenuSearch: typeof import('./../components/MenuSearch/MenuSearch.vue')['default']
+    MoonSvg: typeof import('./../components/DarkThemeSwitch/components/MoonSvg.vue')['default']
+    PageTable: typeof import('./../components/PageTable/PageTable.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    ShowColumnTree: typeof import('./../components/PageTable/src/components/ShowColumnTree.vue')['default']
-    SunSvg: typeof import('./../components/DarkThemeSwitch/src/components/SunSvg.vue')['default']
-    SvgIcon: typeof import('./../components/SvgIcon/src/SvgIcon.vue')['default']
-    TableColumn: typeof import('./../components/PageTable/src/components/TableColumn.vue')['default']
+    ShowColumnTree: typeof import('./../components/PageTable/components/ShowColumnTree.vue')['default']
+    SunSvg: typeof import('./../components/DarkThemeSwitch/components/SunSvg.vue')['default']
+    SvgIcon: typeof import('./../components/SvgIcon/SvgIcon.vue')['default']
+    TableColumn: typeof import('./../components/PageTable/components/TableColumn.vue')['default']
   }
 }
 

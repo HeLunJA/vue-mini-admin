@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import LayoutMenu from './components/LayoutMenu'
-import LayoutHeader from './components/LayoutHeader'
-import LayoutMain from './components/LayoutMain'
-import LayoutTab from './components/LayoutTab'
-import MenuSearch from '@/components/MenuSearch'
 import { themeStore } from '@/store/theme'
+import LayoutHeader from './components/LayoutHeader.vue'
+import LayoutTab from './components/LayoutTab.vue'
+import LayoutMain from './components/LayoutMain.vue'
+import LayoutMenu from './components/LayoutMenu.vue'
 const store = themeStore()
 const isCollapse = computed(() => store.isCollapse)
 const rotate = computed(() => (isCollapse.value ? 'rotate(0deg)' : 'rotate(180deg)'))

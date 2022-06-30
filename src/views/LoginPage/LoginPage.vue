@@ -2,7 +2,6 @@
 import { login } from '@/service/login'
 import type { FormInstance } from 'element-plus'
 import { ElMessage } from 'element-plus'
-import DarkThemeSwitch from '@/components/DarkThemeSwitch'
 import { useGlobalStore } from '@/store/global'
 const globalStore = useGlobalStore()
 const router = useRouter()

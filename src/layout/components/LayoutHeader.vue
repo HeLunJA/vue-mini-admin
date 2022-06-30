@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import screenfull from 'screenfull'
-import DarkThemeSwitch from '@/components/DarkThemeSwitch'
-import LayoutBreadcrumb from '../../LayoutBreadcrumb'
+import LayoutBreadcrumb from './LayoutBreadcrumb.vue'
 import { useGlobalStore } from '@/store/global'
 import { themeStore } from '@/store/theme'
 const gloablStore = useGlobalStore()
