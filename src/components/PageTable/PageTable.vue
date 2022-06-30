@@ -10,7 +10,7 @@ interface IPageTableProps extends tableProps {
 }
 interface parentType {
   parentShow: boolean | undefined
-  parentIndex: string | number
+  parentId: string | number
 }
 const props = withDefaults(defineProps<IPageTableProps>(), {
   paginationConfig: (): IPagination => {
@@ -29,8 +29,8 @@ const defaultShowKeys = ref<string[]>([])
 const setColumns = (columns: columnProps[], parent?: parentType) => {
   columns.forEach((item, index) => {
     item.id = index.toString()
-    if (parent?.parentIndex || parent?.parentIndex === 0) {
-      item.id += '-' + index
+    if (parent?.parentId) {
+      item.id = parent?.parentId + '-' + index
     }
     if (typeof parent !== 'undefined') {
       item.show = parent.parentShow
@@ -40,7 +40,7 @@ const setColumns = (columns: columnProps[], parent?: parentType) => {
       }
     }
     if (item.childrenColumns && item.childrenColumns.length) {
-      setColumns(item.childrenColumns, { parentShow: item.show, parentIndex: index })
+      setColumns(item.childrenColumns, { parentShow: item.show, parentId: item.id })
     } else {
       if (item.show) {
         defaultShowKeys.value.push(item.id)

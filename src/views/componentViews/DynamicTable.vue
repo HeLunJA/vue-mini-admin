@@ -13,7 +13,26 @@ const columnOptions = ref<columnProps[]>([
       { label: '年龄', prop: 'age' },
       { label: '地址', prop: 'address', slot: 'address' }
     ]
-  }
+  },
+  {
+    label: '账号信息',
+    childrenColumns: [
+      { label: '登录账号', prop: 'account' },
+      {
+        label: '徒弟信息',
+        prop: 'childrenAccount',
+        childrenColumns: [
+          { label: '等级', prop: 'lv' },
+          { label: '徒弟账号', prop: 'account1' },
+          { label: '金币数量', prop: 'account2' }
+        ]
+      },
+      { label: '是否可用', prop: 'active' }
+    ]
+  },
+  { label: '金币数量', prop: 'gold' },
+  { label: '日在线时长', prop: 'activeTime' },
+  { label: '操作', prop: 'pt', fixed: 'right' }
 ])
 const tableData = ref([
   {
