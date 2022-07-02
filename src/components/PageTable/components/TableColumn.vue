@@ -1,5 +1,5 @@
 <template>
-  <el-table-column v-if="itemProp?.slot && itemProp.show" v-bind="itemProp" align="center">
+  <el-table-column v-if="itemProp?.slot && itemProp.show" v-bind="itemProp" align="center" show-overflow-tooltip>
     <template #default="scope">
       <slot :name="itemProp.slot" :row="scope.row" />
     </template>
@@ -15,7 +15,7 @@
       </template>
     </table-column>
   </el-table-column>
-  <el-table-column v-else-if="itemProp?.show" v-bind="itemProp" align="center" />
+  <el-table-column v-else-if="itemProp?.show" v-bind="itemProp" align="center" show-overflow-tooltip />
 </template>
 <script lang="ts" setup>
 import { columnProps } from '@/types/elComponent'

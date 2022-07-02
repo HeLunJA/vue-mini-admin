@@ -1,4 +1,4 @@
 import { MockMethod } from 'vite-plugin-mock'
-import { login, routerList, generalData } from './login'
-
-export default [login, routerList, generalData] as MockMethod[]
+import { login, routerList } from './login'
+import { generalData, getTableData } from './data'
+export default [login, routerList, generalData, getTableData] as MockMethod[]

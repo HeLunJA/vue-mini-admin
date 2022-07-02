@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { columnProps } from '@/types/elComponent'
+import { getTableData } from '@/service/home'
 const columnOptions = ref<columnProps[]>([
   {
     label: '登录日期',
@@ -8,82 +9,41 @@ const columnOptions = ref<columnProps[]>([
   {
     label: '用户信息',
     childrenColumns: [
-      { label: '头像', prop: 'headPhoto' },
-      { label: '姓名', prop: 'name', slot: 'name' },
+      { label: '姓名', prop: 'name' },
       { label: '年龄', prop: 'age' },
-      { label: '地址', prop: 'address', slot: 'address' }
+      { label: '地址', prop: 'address' }
     ]
   },
   {
     label: '账号信息',
     childrenColumns: [
       { label: '登录账号', prop: 'account' },
+      { label: '头像', prop: 'headPhoto' },
       {
         label: '徒弟信息',
-        prop: 'childrenAccount',
         childrenColumns: [
-          { label: '等级', prop: 'lv' },
-          { label: '徒弟账号', prop: 'account1' },
-          { label: '金币数量', prop: 'account2' }
+          { label: '等级', prop: 'level' },
+          { label: '徒弟账号', prop: 'prenticeAccount' },
+          { label: '金币数量', prop: 'gold' }
         ]
       },
       { label: '是否可用', prop: 'active' }
     ]
   },
-  { label: '金币数量', prop: 'gold' },
   { label: '日在线时长', prop: 'activeTime' },
   { label: '操作', prop: 'pt', fixed: 'right' }
 ])
-const tableData = ref([
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    age: 10,
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    age: 15,
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    age: 22,
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    age: 23,
-    address: 'No. 189, Grove St, Los Angeles'
-  }
-])
+const searchParam = ref({})
 </script>
 <template>
   <el-card class="card" shadow="never">
-    <PageTable :columns="columnOptions" :data="tableData" border>
-      <template #date="scope">
-        <div style="display: flex; align-items: center">
-          <span>{{ scope.row.date }}---时间插槽</span>
-        </div>
-      </template>
-      <template #address="scope">
-        <div style="display: flex; align-items: center">
-          <span>{{ scope.row.address }}---地址插槽</span>
-        </div>
-      </template>
-      <template #name="scope">
-        <div style="display: flex; align-items: center">
-          <span>{{ scope.row.name }}---姓名插槽</span>
-        </div>
-      </template>
-    </PageTable>
+    <PageTable
+      :data-request="getTableData"
+      :search-param="searchParam"
+      :columns="columnOptions"
+      border
+      max-height="700"
+    ></PageTable>
   </el-card>
 </template>
-<style lang="scss" scoped>
-.card {
-  height: 100%;
-}
-</style>
+<style lang="scss" scoped></style>

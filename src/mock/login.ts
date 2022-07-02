@@ -56,15 +56,5 @@ const routerList: MockMethod = {
     }
   }
 }
-// 昨日概况数据
-const generalData: MockMethod = {
-  url: '/api/mockGetGeneralData',
-  method: 'get',
-  timeout: 1500,
-  response: () => {
-    return {
-      list: [42502, 17480, 32296, 12057]
-    }
-  }
-}
-export { login, routerList, generalData }
+
+export { login, routerList }

@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import { columnProps, tableProps, paginationProps } from '@/types/elComponent'
-interface IPagination extends paginationProps {
-  currentPage?: number
-  pageSize?: number
-}
+import type { columnProps, tableProps } from '@/types/elComponent'
+import type { IPagination } from './type'
+import type { Ref } from 'vue'
+import { useSwitchDark } from '@/hooks/useChangeTheme'
+import usePagination from './hooks/usePagination'
+import useSetColumn from './hooks/useSetColumn'
+import useGetTableData from './hooks/useGetTableData'
 interface IPageTableProps extends tableProps {
   columns: columnProps[]
   paginationConfig?: IPagination
-}
-interface parentType {
-  parentShow: boolean | undefined
-  parentId: string | number
+  dataRequest: Function
+  searchParam: Object
 }
 const props = withDefaults(defineProps<IPageTableProps>(), {
   paginationConfig: (): IPagination => {
@@ -22,38 +22,16 @@ const props = withDefaults(defineProps<IPageTableProps>(), {
     }
   }
 })
-const currentPage = toRef(props.paginationConfig, 'currentPage')
-const pageSize = toRef(props.paginationConfig, 'pageSize')
-const tableTotal = ref(0)
-const defaultShowKeys = ref<string[]>([])
-const setColumns = (columns: columnProps[], parent?: parentType) => {
-  columns.forEach((item, index) => {
-    item.id = index.toString()
-    if (parent?.parentId) {
-      item.id = parent?.parentId + '-' + index
-    }
-    if (typeof parent !== 'undefined') {
-      item.show = parent.parentShow
-    } else {
-      if (!('show' in item)) {
-        item.show = true
-      }
-    }
-    if (item.childrenColumns && item.childrenColumns.length) {
-      setColumns(item.childrenColumns, { parentShow: item.show, parentId: item.id })
-    } else {
-      if (item.show) {
-        defaultShowKeys.value.push(item.id)
-      }
-    }
-  })
-}
-const handleSizeChange = (val: number) => {
-  pageSize.value = val
-}
-const handleCurrentChange = (val: number) => {
-  currentPage.value = val
-}
+const slots = useSlots()
+const isDark = useSwitchDark()
+const theadColor = computed(() => (isDark.value ? '#b9bcc2' : '#433c3c'))
+const { currentPage, pageSize, handleSizeChange, handleCurrentChange } = usePagination(props.paginationConfig)
+const { tableData, tableLoading, tableTotal } = useGetTableData(
+  props,
+  currentPage as Ref<number>,
+  pageSize as Ref<number>
+)
+const { defaultShowKeys, setColumns } = useSetColumn()
 watch(
   () => props.columns,
   (columns) => {
@@ -63,19 +41,23 @@ watch(
     immediate: true
   }
 )
-const slots = useSlots()
 </script>
 <template>
   <div class="option">
     <div></div>
     <el-popover popper-class="down-popover" placement="left-start" trigger="click">
       <template #reference>
-        <component :is="'Operation'" class="operation"></component>
+        <el-button icon="operation" circle />
       </template>
       <show-column-tree :columns="columns" :default-checked-keys="defaultShowKeys" />
     </el-popover>
   </div>
-  <el-table class="table" v-bind="$attrs">
+  <el-table v-loading="tableLoading" class="table" v-bind="$attrs" :data="tableData">
+    <el-table-column label="序号" align="center" fixed="left">
+      <template #default="scope">
+        <div>{{ scope.$index + 1 }}</div>
+      </template>
+    </el-table-column>
     <table-column v-for="item in columns" :key="item.id" :item-prop="item">
       <template v-for="slot in Object.keys(slots)" #[slot]="data">
         <slot :name="slot" v-bind="data" />
@@ -102,8 +84,13 @@ const slots = useSlots()
 }
 </style>
 <style lang="scss" scoped>
-.table :deep(.cell) {
-  height: 20px !important; //固定表头高度,解决列显隐表格抖动
+.table {
+  :deep(.cell) {
+    height: 20px !important; //固定表头高度,解决列显隐表格抖动
+  }
+  :deep(thead) {
+    color: v-bind(theadColor);
+  }
 }
 .option {
   display: flex;
