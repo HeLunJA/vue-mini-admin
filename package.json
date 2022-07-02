@@ -9,8 +9,10 @@
     "lint": "eslint --ext .js,.vue src --fix"
   },
   "dependencies": {
+    "@vitejs/plugin-vue-jsx": "^1.3.10",
     "@vueuse/core": "^8.6.0",
     "axios": "^0.27.2",
+    "dayjs": "^1.11.3",
     "echarts": "^5.3.3",
     "element-plus": "^2.2.5",
     "gsap": "^3.10.4",

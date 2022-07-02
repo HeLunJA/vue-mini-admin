@@ -7,13 +7,14 @@ import Components from 'unplugin-vue-components/vite'
 import { viteMockServe } from 'vite-plugin-mock'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import vue from '@vitejs/plugin-vue'
 
 export default ({ mode }) => {
   return defineConfig({
     plugins: [
       vue(),
+      vueJsx(),
       viteMockServe({
         mockPath: './src/mock',
         supportTs: true

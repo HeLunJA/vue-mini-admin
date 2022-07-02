@@ -7,4 +7,6 @@ export type columnProps = column & {
   childrenColumns?: columnProps[]
   slot?: string
   id?: string
+  headerRender?: (scope: any) => any,
+  contentRender?: (scope: any) => any
 }

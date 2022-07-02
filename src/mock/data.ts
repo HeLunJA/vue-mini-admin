@@ -22,9 +22,10 @@ for (let i = 0; i < 100; i++) {
     level: Math.floor(Math.random() * 10 + 1),
     prenticeAccount: 'z' + Math.floor(Math.random() * 18151151),
     gold: Math.floor(Math.random() * 10000),
-    active: i > 80 ? 0 : 1,
+    active: Math.floor(Math.random() * 2),
     activeTime: Math.floor(Math.random() * 1000),
-    date: new Date('2017-05-08 12:50:30').getTime() - Math.floor(Math.random() * 1000)
+    date: new Date().getTime() - Math.floor(Math.random() * 942542000),
+    headPhoto: 'https://avatars.githubusercontent.com/u/30490423?v=4'
   }
   tableData.push(item)
 }

@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<IPageTableProps>(), {
     return {
       currentPage: 1,
       pageSize: 10,
-      pageSizes: [10, 30, 50, 100],
+      pageSizes: [10, 30, 50],
       layout: 'total, sizes, prev, pager, next, jumper'
     }
   }
@@ -26,7 +26,7 @@ const slots = useSlots()
 const isDark = useSwitchDark()
 const theadColor = computed(() => (isDark.value ? '#b9bcc2' : '#433c3c'))
 const { currentPage, pageSize, handleSizeChange, handleCurrentChange } = usePagination(props.paginationConfig)
-const { tableData, tableLoading, tableTotal } = useGetTableData(
+const { tableData, tableLoading, tableTotal, getTableData } = useGetTableData(
   props,
   currentPage as Ref<number>,
   pageSize as Ref<number>
@@ -45,12 +45,15 @@ watch(
 <template>
   <div class="option">
     <div></div>
-    <el-popover popper-class="down-popover" placement="left-start" trigger="click">
-      <template #reference>
-        <el-button icon="operation" circle />
-      </template>
-      <show-column-tree :columns="columns" :default-checked-keys="defaultShowKeys" />
-    </el-popover>
+    <div>
+      <el-button icon="RefreshLeft" circle @click="getTableData" />
+      <el-popover popper-class="down-popover" placement="left-start" trigger="click">
+        <template #reference>
+          <el-button icon="operation" circle />
+        </template>
+        <show-column-tree :columns="columns" :default-checked-keys="defaultShowKeys" />
+      </el-popover>
+    </div>
   </div>
   <el-table v-loading="tableLoading" class="table" v-bind="$attrs" :data="tableData">
     <el-table-column label="序号" align="center" fixed="left">
@@ -85,9 +88,6 @@ watch(
 </style>
 <style lang="scss" scoped>
 .table {
-  :deep(.cell) {
-    height: 20px !important; //固定表头高度,解决列显隐表格抖动
-  }
   :deep(thead) {
     color: v-bind(theadColor);
   }
