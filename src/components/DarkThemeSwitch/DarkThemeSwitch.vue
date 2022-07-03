@@ -14,7 +14,7 @@ import {
 } from '@/enums/theme'
 const isDark = useSwitchDark()
 const switchColor = computed(() => (isDark.value ? '#1d1e1f' : '#606266'))
-const iconName = computed(() => (isDark.value ? 'sun' : 'moon'))
+const iconName = computed(() => (isDark.value ? 'moon' : 'sun'))
 watch(
   () => isDark.value,
   (val) => {
