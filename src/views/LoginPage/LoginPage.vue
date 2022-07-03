@@ -57,6 +57,10 @@ const submitForm = (formEl: FormInstance | undefined) => {
 <template>
   <div :class="{ [linearClassName]: true, login: true, display_center: true }">
     <div class="card display_center frosted-glass">
+      <div class="drop"></div>
+      <div class="drop"></div>
+      <div class="drop"></div>
+      <div class="drop"></div>
       <div class="title">vue mini admin</div>
       <DarkThemeSwitch class="switch" />
       <el-form ref="ruleFormRef" :model="account" status-icon :rules="rules" class="demo-ruleForm">
@@ -97,10 +101,10 @@ const submitForm = (formEl: FormInstance | undefined) => {
 
 <style lang="scss" scoped>
 .linear {
-  background: linear-gradient(to bottom right, #409eff, #003686);
+  background: linear-gradient(to bottom right, #007dff, #4270b3);
 }
 .darkLinear {
-  background: linear-gradient(to bottom right, #693280, #070a58);
+  background: linear-gradient(to bottom right, #0c2068, #2c32bb);
 }
 .display_center {
   display: flex;
@@ -137,7 +141,10 @@ const submitForm = (formEl: FormInstance | undefined) => {
     background-color: #ffffff00;
     :deep(.el-input__wrapper) {
       background-color: transparent;
-      box-shadow: 0 0 10px 1px #b0a5a563 inset;
+      box-shadow: 0 0 10px 1px rgb(255 255 255 / 39%) inset;
+      &:hover {
+        box-shadow: 5px 4px 11px 0px rgb(47 44 44 / 17%), 2px 3px 10px 1px rgb(255 255 255 / 39%) inset;
+      }
     }
     :deep(.el-form) {
       display: flex;
@@ -315,13 +322,73 @@ const submitForm = (formEl: FormInstance | undefined) => {
   border-radius: 4px;
   background: transparent;
   border: 0px;
-  box-shadow: 0 0 10px 1px #b0a5a563 inset;
+  box-shadow: 0 0 10px 1px rgb(255 255 255 / 39%) inset;
   cursor: pointer;
   &:hover {
-    box-shadow: 5px 4px 11px 0px rgb(47 44 44 / 17%), 2px 3px 10px 1px rgb(176 165 165 / 39%) inset;
+    box-shadow: 5px 4px 11px 0px rgb(47 44 44 / 17%), 2px 3px 10px 1px rgb(255 255 255 / 39%) inset;
   }
   &:active {
     transform: scale(0.9, 0.9);
+  }
+}
+.drop {
+  position: absolute;
+  left: 45%;
+  z-index: 2000;
+  top: 170px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 29% 71% 37% 63%/27% 45% 55% 73%;
+  box-shadow: 4px 3px 6px 0px rgb(47 44 44 / 17%), -1px -1px 10px 1px rgb(255 255 255 / 39%) inset;
+  animation: move 6s linear infinite;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 8px;
+    height: 8px;
+    width: 8px;
+    border-radius: 28% 72% 46% 54%/66% 62% 38% 34%;
+    background: radial-gradient(rgb(251 245 245 / 40%), rgba(126, 44, 44, 0));
+    animation: move 1s linear infinite;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    left: 22px;
+    top: 11px;
+    height: 4px;
+    width: 4px;
+    border-radius: 28% 72% 38% 62%/43% 47% 53% 57%;
+    background: radial-gradient(rgb(251 245 245 / 40%), rgba(126, 44, 44, 0));
+    animation: move 1s linear infinite;
+  }
+  &:nth-child(1) {
+    border-radius: 30% 70% 48% 52% / 38% 39% 61% 62%;
+    transform: scale(1.3) translate(40px, -32px);
+    animation: move 3s linear infinite;
+  }
+  &:nth-child(2) {
+    border-radius: 42% 58% 32% 68% / 29% 36% 64% 71%;
+    transform: scale(0.5) translate(-169px, 128px);
+    animation: move 2s linear infinite;
+  }
+  &:nth-child(3) {
+    border-radius: 63% 37% 69% 31% / 47% 50% 50% 53%;
+    transform: scale(0.7) translate(176px, -20px);
+    animation: move 4s linear infinite;
+  }
+  @keyframes move {
+    25% {
+      border-radius: 36% 64% 52% 48% / 42% 48% 52% 58%;
+    }
+    50% {
+      border-radius: 37% 63% 50% 50% / 53% 54% 46% 47%;
+    }
+    75% {
+      border-radius: 36% 64% 49% 51% / 42% 47% 53% 58%;
+    }
   }
 }
 </style>
