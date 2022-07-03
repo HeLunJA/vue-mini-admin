@@ -61,7 +61,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
       <div class="drop"></div>
       <div class="drop"></div>
       <div class="drop"></div>
-      <div class="title">vue mini admin</div>
+      <div class="title">Drop admin</div>
       <DarkThemeSwitch class="switch" />
       <el-form ref="ruleFormRef" :model="account" status-icon :rules="rules" class="demo-ruleForm">
         <el-form-item prop="name">
@@ -307,6 +307,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
   position: absolute;
   left: 50%;
   top: 150px;
+  min-width: 200px;
   transform: translateX(-50%);
   font-size: 32px;
   font-weight: 600;
