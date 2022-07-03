@@ -82,17 +82,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
             placeholder="请输入登录密码"
           />
         </el-form-item>
-        <button
-          data-text="登录"
-          class="btn btn-primary btn-ghost btn-border-stroke btn-text-float-up"
-          @click="submitForm(ruleFormRef)"
-        >
-          <div class="btn-borders">
-            <div class="border-top"></div>
-            <div class="border-right"></div>
-            <div class="border-bottom"></div>
-            <div class="border-left"></div>
-          </div>
+        <button class="btn" @click="submitForm(ruleFormRef)">
           <span class="btn-text">登录</span>
         </button>
       </el-form>
@@ -106,162 +96,6 @@ const submitForm = (formEl: FormInstance | undefined) => {
 </template>
 
 <style lang="scss" scoped>
-.btn {
-  --hue: 190;
-  --ease-in-duration: 0.25s;
-  --ease-in-exponential: cubic-bezier(0.95, 0.05, 0.795, 0.035);
-  --ease-out-duration: 0.65s;
-  --ease-out-delay: var(--ease-in-duration);
-  --ease-out-exponential: cubic-bezier(0.19, 1, 0.22, 1);
-  position: relative;
-  padding: 12px 70px;
-  border-radius: 4px;
-  font-size: 16px;
-  line-height: 1.5;
-  text-decoration: none;
-  background-color: hsl(var(--hue), 100%, 41%);
-  border: 1px solid hsl(var(--hue), 100%, 41%);
-  outline: transparent;
-  overflow: hidden;
-  cursor: pointer;
-  user-select: none;
-  white-space: nowrap;
-  transition: 0.25s;
-  &:hover {
-    background: hsl(var(--hue), 100%, 31%);
-  }
-  &-primary {
-    --hue: 171;
-  }
-  &-ghost {
-    color: hsl(var(--hue), 100%, 41%);
-    background-color: transparent;
-    border-color: hsl(var(--hue), 100%, 41%);
-    &:hover {
-      color: white;
-    }
-  }
-  &-border-stroke {
-    border-color: hsla(var(--hue), 100%, 41%, 0.35);
-    .btn-borders {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      .border-top {
-        position: absolute;
-        top: 0;
-        width: 100%;
-        height: 1px;
-        background: hsl(var(--hue), 100%, 41%);
-        transform: scaleX(0);
-        transform-origin: left;
-      }
-      .border-right {
-        position: absolute;
-        right: 0;
-        width: 1px;
-        height: 100%;
-        background: hsl(var(--hue), 100%, 41%);
-        transform: scaleY(0);
-        transform-origin: bottom;
-      }
-      .border-bottom {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        height: 1px;
-        background: hsl(var(--hue), 100%, 41%);
-        transform: scaleX(0);
-        transform-origin: left;
-      }
-      .border-left {
-        position: absolute;
-        left: 0;
-        width: 1px;
-        height: 100%;
-        background: hsl(var(--hue), 100%, 41%);
-        transform: scaleY(0);
-        transform-origin: bottom;
-      }
-      .border-left {
-        transition: var(--ease-out-duration) var(--ease-out-delay) var(--ease-out-exponential);
-      }
-      .border-bottom {
-        transition: var(--ease-out-duration) var(--ease-out-delay) var(--ease-out-exponential);
-      }
-
-      .border-right {
-        transition: var(--ease-in-duration) var(--ease-in-exponential);
-      }
-      .border-top {
-        transition: var(--ease-in-duration) var(--ease-in-exponential);
-      }
-    }
-    &:hover {
-      color: hsl(var(--hue), 100%, 41%);
-      background: transparent;
-
-      .border-top,
-      .border-bottom {
-        transform: scaleX(1);
-      }
-      .border-left,
-      .border-right {
-        transform: scaleY(1);
-      }
-      .border-left {
-        transition: var(--ease-in-duration) var(--ease-in-exponential);
-      }
-      .border-bottom {
-        transition: var(--ease-in-duration) var(--ease-in-exponential);
-      }
-
-      .border-right {
-        transition: var(--ease-out-duration) var(--ease-out-delay) var(--ease-out-exponential);
-      }
-      .border-top {
-        transition: var(--ease-out-duration) var(--ease-out-delay) var(--ease-out-exponential);
-      }
-    }
-  }
-
-  &-text-float-up {
-    &::after {
-      position: absolute;
-      content: attr(data-text);
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      transform: translateY(35%);
-      transition: 0.25s ease-out;
-    }
-    .btn-text {
-      display: block;
-      transition: 0.75s 0.1s var(--ease-out-exponential);
-    }
-
-    &:hover {
-      .btn-text {
-        opacity: 0;
-        transform: translateY(-25%);
-        transition: 0.25s ease-out;
-      }
-
-      &::after {
-        opacity: 1;
-        transform: translateY(0);
-        transition: 0.75s 0.1s var(--ease-out-exponential);
-      }
-    }
-  }
-}
 .linear {
   background: linear-gradient(to bottom right, #409eff, #003686);
 }
@@ -303,7 +137,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
     background-color: #ffffff00;
     :deep(.el-input__wrapper) {
       background-color: transparent;
-      box-shadow: 0 0 0 1px #dcdfe6 inset;
+      box-shadow: 0 0 10px 1px #b0a5a563 inset;
     }
     :deep(.el-form) {
       display: flex;
@@ -374,6 +208,15 @@ const submitForm = (formEl: FormInstance | undefined) => {
         width: 100%;
         height: 100%;
         transform: scale(0.25) translate(-70%, -70%);
+        background: radial-gradient(#fbf5f52b, #7e2c2c00);
+        border-radius: 50%;
+      }
+      &::after {
+        content: '';
+        position: absolute;
+        width: 70%;
+        height: 70%;
+        transform: scale(0.1) translate(100%, 120%);
         background: radial-gradient(#fbf5f52b, #7e2c2c00);
         border-radius: 50%;
       }
@@ -458,8 +301,27 @@ const submitForm = (formEl: FormInstance | undefined) => {
   left: 50%;
   top: 150px;
   transform: translateX(-50%);
-  color: #ffffffbf;
   font-size: 32px;
   font-weight: 600;
+  color: rgb(245 245 245 / 82%);
+  text-shadow: 0 0 6px rgba(182, 211, 207, 1), 0 0 30px rgba(182, 211, 207, 0.4), 0 0 12px rgba(15, 115, 223, 0.6),
+    0 0 22px rgba(38, 101, 168, 0.8), 0 0 38px rgba(80, 153, 231, 0.9), 0 0 60px rgb(59, 139, 224);
+}
+
+.btn {
+  width: 100%;
+  height: 40px;
+  color: rgb(184 176 176);
+  border-radius: 4px;
+  background: transparent;
+  border: 0px;
+  box-shadow: 0 0 10px 1px #b0a5a563 inset;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 5px 4px 11px 0px rgb(47 44 44 / 17%), 2px 3px 10px 1px rgb(176 165 165 / 39%) inset;
+  }
+  &:active {
+    transform: scale(0.9, 0.9);
+  }
 }
 </style>
