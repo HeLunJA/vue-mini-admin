@@ -12,11 +12,9 @@ import {
   BASE_BGC_COLOR_DARK,
   BASE_BGC_COLOR_LIGHT
 } from '@/enums/theme'
-import SunSvg from './components/SunSvg.vue'
-import MoonSvg from './components/MoonSvg.vue'
-type changeType = (val: string | number | boolean) => any
 const isDark = useSwitchDark()
 const switchColor = computed(() => (isDark.value ? '#1d1e1f' : '#606266'))
+const iconName = computed(() => (isDark.value ? 'sun' : 'moon'))
 watch(
   () => isDark.value,
   (val) => {
@@ -32,24 +30,22 @@ watch(
   },
   { immediate: true }
 )
-const handleChange = useDarkThemeChange as changeType
 </script>
 
 <template>
-  <el-switch
-    class="switch"
-    :value="isDark"
-    inline-prompt
-    :active-icon="SunSvg"
-    :inactive-icon="MoonSvg"
-    @change="handleChange"
-  />
+  <svg-icon class="svg" :name="iconName" @click="useDarkThemeChange(!isDark)"></svg-icon>
 </template>
 
 <style lang="scss" scoped>
 .switch {
   :deep(.el-switch__core) {
     background-color: v-bind(switchColor);
+  }
+}
+.svg {
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.2, 1.2);
   }
 }
 </style>
