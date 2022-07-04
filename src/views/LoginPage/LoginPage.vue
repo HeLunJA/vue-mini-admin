@@ -140,6 +140,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
     box-sizing: border-box;
     height: 70%;
     width: 70%;
+    min-width: 350px;
     background-color: #ffffff00;
     :deep(.el-input__wrapper) {
       background-color: transparent;
