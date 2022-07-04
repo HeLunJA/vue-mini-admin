@@ -59,7 +59,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
 onMounted(() => {
   VanillaTilt.init(loginCard.value, {
     speed: 3,
-    max: 6,
+    max: 4,
     'max-glare': 0.8,
     reverse: true,
     'full-page-listening': true

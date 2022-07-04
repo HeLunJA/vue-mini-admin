@@ -6,7 +6,7 @@ const columnOptions = ref<columnProps[]>([
   {
     label: '登录时间',
     prop: 'date',
-    contentRender: (scope) => dayjs(scope.data.row.date).format('YYYY-MM-DD')
+    contentRender: (scope) => dayjs(scope.data.row.date).format('YYYY-MM-DD HH:ss')
   },
   {
     label: '用户信息',
@@ -57,7 +57,13 @@ const searchParam = ref({})
 </script>
 <template>
   <div class="card" shadow="never">
-    <PageTable :data-request="getTableData" :search-param="searchParam" :columns="columnOptions" border></PageTable>
+    <PageTable
+      :data-request="getTableData"
+      :search-param="searchParam"
+      :columns="columnOptions"
+      :max-height="700"
+      border
+    ></PageTable>
   </div>
 </template>
 <style lang="scss" scoped>
