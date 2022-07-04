@@ -1,40 +1,11 @@
-<template>
-  <div class="body">
-    <el-card shadow="never">
-      <div class="title">昨日概况</div>
-      <div class="box">
-        <template v-for="(item, index) in generals" :key="item.label">
-          <div v-if="!isSkeleton" class="item">
-            <div class="label">{{ item.label }}</div>
-            <div class="number">{{ item.number }}</div>
-            <svg-icon size="80px" :name="item.icon" />
-          </div>
-          <el-skeleton v-else style="--el-skeleton-circle-size: 200px" animated>
-            <template #template>
-              <el-skeleton-item class="skeleton" />
-              <el-skeleton-item class="skeleton" />
-              <el-skeleton-item class="skeleton" />
-              <el-skeleton-item variant="circle" style="width: 80px; height: 80px" />
-            </template>
-          </el-skeleton>
-          <div v-if="index !== generals.length - 1" class="border"></div>
-        </template>
-      </div>
-    </el-card>
-    <el-card shadow="never" class="card">
-      <div class="title">七日概况</div>
-      <div class="echartBox">
-        <div ref="echartDom" style="width: 100%; height: 300px"></div>
-      </div>
-    </el-card>
-  </div>
-</template>
 <script lang="ts" setup>
+import type { EChartsOption } from 'echarts'
+import type { Ref } from 'vue'
+
 import { useSwitchDark } from '@/hooks/useChangeTheme'
 import { useGetGeneralData } from './hooks/useGetGeneralData'
 import { useCreateEcharts } from '@/hooks/useCreateEcharts'
-import type { EChartsOption } from 'echarts'
-import type { Ref } from 'vue'
+
 const echartDom = ref<HTMLDivElement>()
 const isDark = useSwitchDark()
 const spaceColor = computed(() => (isDark.value ? '#3b3636 ' : '#ffffff'))
@@ -66,6 +37,37 @@ onMounted(() => {
   setOptions(barOptions)
 })
 </script>
+<template>
+  <div class="body">
+    <el-card shadow="never">
+      <div class="title">昨日概况</div>
+      <div class="box">
+        <template v-for="(item, index) in generals" :key="item.label">
+          <div v-if="!isSkeleton" class="item">
+            <div class="label">{{ item.label }}</div>
+            <div class="number">{{ item.number }}</div>
+            <svg-icon size="80px" :name="item.icon" />
+          </div>
+          <el-skeleton v-else style="--el-skeleton-circle-size: 200px" animated>
+            <template #template>
+              <el-skeleton-item class="skeleton" />
+              <el-skeleton-item class="skeleton" />
+              <el-skeleton-item class="skeleton" />
+              <el-skeleton-item variant="circle" style="width: 80px; height: 80px" />
+            </template>
+          </el-skeleton>
+          <div v-if="index !== generals.length - 1" class="border"></div>
+        </template>
+      </div>
+    </el-card>
+    <el-card shadow="never" class="card">
+      <div class="title">七日概况</div>
+      <div class="echartBox">
+        <div ref="echartDom" style="width: 100%; height: 300px"></div>
+      </div>
+    </el-card>
+  </div>
+</template>
 <style lang="scss" scoped>
 .skeleton {
   margin-bottom: 6px;

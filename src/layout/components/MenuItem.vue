@@ -1,3 +1,14 @@
+<script lang="ts" setup>
+import type { RouteRecordName } from 'vue-router'
+type Props = {
+  menuList: TRouterItem[]
+}
+const router = useRouter()
+const props = defineProps<Props>()
+const action = (name: RouteRecordName | undefined) => {
+  router.push({ name })
+}
+</script>
 <template>
   <template v-for="item in props.menuList">
     <el-sub-menu v-if="item.children" :key="item.name" :index="(item.name as string)">
@@ -18,15 +29,3 @@
     </el-menu-item>
   </template>
 </template>
-<script lang="ts" setup>
-import type { RouteRecordName } from 'vue-router'
-type Props = {
-  menuList: TRouterItem[]
-}
-const router = useRouter()
-const props = defineProps<Props>()
-const action = (name: RouteRecordName | undefined) => {
-  router.push({ name })
-}
-</script>
-<style scoped></style>

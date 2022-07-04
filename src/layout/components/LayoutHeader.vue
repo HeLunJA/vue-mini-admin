@@ -3,6 +3,7 @@ import screenfull from 'screenfull'
 import LayoutBreadcrumb from './LayoutBreadcrumb.vue'
 import { useGlobalStore } from '@/store/global'
 import { themeStore } from '@/store/theme'
+
 const gloablStore = useGlobalStore()
 const theme_store = themeStore()
 const router = useRouter()

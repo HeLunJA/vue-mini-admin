@@ -1,6 +1,7 @@
+import type { WritableComputedRef } from 'vue'
 import { defineStore } from 'pinia'
 import { useDark } from '@vueuse/core'
-import type { WritableComputedRef } from 'vue'
+
 type themeState = {
   isDark: WritableComputedRef<boolean>
   isCollapse: boolean

@@ -1,9 +1,3 @@
-<template>
-  <svg aria-hidden="true" class="svg-icon" :width="size" :height="size">
-    <use :xlink:href="symbolId" :fill="color" />
-  </svg>
-</template>
-
 <script lang="ts" setup>
 const props = defineProps({
   prefix: {
@@ -23,6 +17,10 @@ const props = defineProps({
     default: '1em'
   }
 })
-
 const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 </script>
+<template>
+  <svg aria-hidden="true" class="svg-icon" :width="size" :height="size">
+    <use :xlink:href="symbolId" :fill="color" />
+  </svg>
+</template>

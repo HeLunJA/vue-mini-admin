@@ -1,20 +1,22 @@
 <script setup lang="ts">
-import { login } from '@/service/login'
 import type { FormInstance } from 'element-plus'
+import { login } from '@/service/login'
 import { ElMessage } from 'element-plus'
-import { useGlobalStore } from '@/store/global'
 import { useSwitchDark } from '@/hooks/useChangeTheme'
+import { useGlobalStore } from '@/store/global'
+
 const isDark = useSwitchDark()
 const waveClassName = computed(() => (isDark.value ? 'darkWaveSvg' : 'waveSvg'))
 const linearClassName = computed(() => (isDark.value ? 'darkLinear' : 'linear'))
+
 const globalStore = useGlobalStore()
 const router = useRouter()
 const ruleFormRef = ref<FormInstance>()
+const loading = ref<boolean>(false)
 const account = reactive<IAccountType>({
   name: 'admin',
   password: '123456'
 })
-const loading = ref<boolean>(false)
 const validateName = (rule: any, value: any, callback: any) => {
   if (value === '') {
     callback(new Error('请输入登录账号'))

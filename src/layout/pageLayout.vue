@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { themeStore } from '@/store/theme'
 import LayoutHeader from './components/LayoutHeader.vue'
 import LayoutTab from './components/LayoutTab.vue'
 import LayoutMain from './components/LayoutMain.vue'
 import LayoutMenu from './components/LayoutMenu.vue'
+
+import { themeStore } from '@/store/theme'
+
 const store = themeStore()
 const isCollapse = computed(() => store.isCollapse)
 const rotate = computed(() => (isCollapse.value ? 'rotate(0deg)' : 'rotate(180deg)'))

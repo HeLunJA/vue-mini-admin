@@ -1,14 +1,3 @@
-<template>
-  <el-tree
-    :data="(columns as unknown[])"
-    show-checkbox
-    node-key="id"
-    :props="defaultProps"
-    default-expand-all
-    :default-checked-keys="(defaultCheckedKeys as string[])"
-    @check-change="handleChange"
-  />
-</template>
 <script lang="ts" setup>
 import { columnProps } from '@/types/elComponent'
 interface IColumnProps {
@@ -32,4 +21,14 @@ const handleChange = (node, checked, isChildrenChecked) => {
   }
 }
 </script>
-<style lang="scss" scoped></style>
+<template>
+  <el-tree
+    :data="(columns as unknown[])"
+    show-checkbox
+    node-key="id"
+    :props="defaultProps"
+    default-expand-all
+    :default-checked-keys="(defaultCheckedKeys as string[])"
+    @check-change="handleChange"
+  />
+</template>

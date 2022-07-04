@@ -1,3 +1,11 @@
+<script lang="ts" setup>
+import { columnProps } from '@/types/elComponent'
+interface IColumnProps {
+  itemProp: columnProps | null
+}
+withDefaults(defineProps<IColumnProps>(), { itemProp: null })
+const slots = useSlots()
+</script>
 <template>
   <el-table-column
     v-if="itemProp?.contentRender && itemProp.show"
@@ -40,12 +48,3 @@
     ></template>
   </el-table-column>
 </template>
-<script lang="ts" setup>
-import { columnProps } from '@/types/elComponent'
-interface IColumnProps {
-  itemProp: columnProps | null
-}
-withDefaults(defineProps<IColumnProps>(), { itemProp: null })
-const slots = useSlots()
-</script>
-<style lang="scss" scoped></style>

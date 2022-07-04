@@ -2,16 +2,19 @@
 import type { columnProps, tableProps } from '@/types/elComponent'
 import type { IPagination } from './type'
 import type { Ref } from 'vue'
+
 import { useSwitchDark } from '@/hooks/useChangeTheme'
 import usePagination from './hooks/usePagination'
 import useSetColumn from './hooks/useSetColumn'
 import useGetTableData from './hooks/useGetTableData'
+
 interface IPageTableProps extends tableProps {
   columns: columnProps[]
   paginationConfig?: IPagination
   dataRequest: Function
   searchParam: Object
 }
+
 const props = withDefaults(defineProps<IPageTableProps>(), {
   paginationConfig: (): IPagination => {
     return {

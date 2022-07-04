@@ -66,4 +66,3 @@ const searchParam = ref({})
     ></PageTable>
   </el-card>
 </template>
-<style lang="scss" scoped></style>

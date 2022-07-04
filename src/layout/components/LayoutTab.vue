@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import type { ItabItem } from '@/store/global/type'
 import { storeToRefs } from 'pinia'
 import { useSwitchDark } from '@/hooks/useChangeTheme'
 import { useGlobalStore } from '@/store/global'
-import type { ItabItem } from '@/store/global/type'
 const router = useRouter()
 const route = useRoute()
 const gloablStore = useGlobalStore()

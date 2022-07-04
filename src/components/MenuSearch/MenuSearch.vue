@@ -1,34 +1,12 @@
-<template>
-  <el-select
-    v-model="value"
-    filterable
-    remote
-    reserve-keyword
-    placeholder="请输入菜单名称..."
-    :remote-method="remoteMethod"
-    :loading="loading"
-  >
-    <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
-  </el-select>
-</template>
-
 <script lang="ts" setup>
-interface ListItem {
+interface IListItem {
   value: string
   label: string
 }
-
-const list = ref<ListItem[]>([])
-const options = ref<ListItem[]>([])
+const list = ref<IListItem[]>([])
+const options = ref<IListItem[]>([])
 const value = ref<string[]>([])
 const loading = ref(false)
-
-onMounted(() => {
-  list.value = states.map((item) => {
-    return { value: `${item}`, label: `${item}` }
-  })
-})
-
 const remoteMethod = (query: string) => {
   if (query) {
     loading.value = true
@@ -42,7 +20,11 @@ const remoteMethod = (query: string) => {
     options.value = []
   }
 }
-
+onMounted(() => {
+  list.value = states.map((item) => {
+    return { value: `${item}`, label: `${item}` }
+  })
+})
 const states = [
   'Alabama',
   'Alaska',
@@ -96,5 +78,16 @@ const states = [
   'Wyoming'
 ]
 </script>
-
-<style lang="scss" scoped></style>
+<template>
+  <el-select
+    v-model="value"
+    filterable
+    remote
+    reserve-keyword
+    placeholder="请输入菜单名称..."
+    :remote-method="remoteMethod"
+    :loading="loading"
+  >
+    <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
+  </el-select>
+</template>
