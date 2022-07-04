@@ -59,7 +59,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
 onMounted(() => {
   VanillaTilt.init(loginCard.value, {
     speed: 3,
-    max: 3,
+    max: 6,
     'max-glare': 0.8,
     reverse: true,
     'full-page-listening': true
@@ -74,7 +74,7 @@ onMounted(() => {
       <div class="drop"></div>
       <div class="drop"></div>
       <div class="drop"></div>
-      <div class="title">Drop admin</div>
+      <div class="title">vue mini admin</div>
       <DarkThemeSwitch class="switch" />
       <el-form ref="ruleFormRef" :model="account" status-icon :rules="rules" class="demo-ruleForm">
         <el-form-item prop="name">
@@ -145,6 +145,8 @@ onMounted(() => {
   width: 100%;
   height: 100vh;
   .card {
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
     position: relative;
     z-index: 1000;
     box-sizing: border-box;
@@ -173,6 +175,9 @@ onMounted(() => {
       position: absolute;
       top: 16px;
       right: 38px;
+    }
+    .demo-ruleForm {
+      transform: translateZ(20px);
     }
   }
   .btn-box {
