@@ -21,6 +21,7 @@
     "pinia": "^2.0.0-rc.10",
     "pinia-plugin-persist": "^1.0.0",
     "screenfull": "^6.0.2",
+    "vanilla-tilt": "^1.7.2",
     "vite-plugin-mock": "^2.9.6",
     "vite-plugin-svg-icons": "^2.0.1",
     "vue": "^3.2.25",

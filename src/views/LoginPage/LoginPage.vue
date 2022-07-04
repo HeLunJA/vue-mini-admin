@@ -4,10 +4,12 @@ import { login } from '@/service/login'
 import { ElMessage } from 'element-plus'
 import { useSwitchDark } from '@/hooks/useChangeTheme'
 import { useGlobalStore } from '@/store/global'
+import VanillaTilt from 'vanilla-tilt'
 
 const isDark = useSwitchDark()
 const waveClassName = computed(() => (isDark.value ? 'darkWaveSvg' : 'waveSvg'))
 const linearClassName = computed(() => (isDark.value ? 'darkLinear' : 'linear'))
+const loginCard = ref()
 
 const globalStore = useGlobalStore()
 const router = useRouter()
@@ -54,11 +56,20 @@ const submitForm = (formEl: FormInstance | undefined) => {
     }
   })
 }
+onMounted(() => {
+  VanillaTilt.init(loginCard.value, {
+    speed: 3,
+    max: 3,
+    'max-glare': 0.8,
+    reverse: true,
+    'full-page-listening': true
+  })
+})
 </script>
 
 <template>
   <div :class="{ [linearClassName]: true, login: true, display_center: true }">
-    <div class="card display_center frosted-glass">
+    <div ref="loginCard" class="card display_center frosted-glass">
       <div class="drop"></div>
       <div class="drop"></div>
       <div class="drop"></div>
@@ -97,7 +108,6 @@ const submitForm = (formEl: FormInstance | undefined) => {
     <ul class="bubbles">
       <li v-for="i in 10" :key="i"></li>
     </ul>
-    <div class="sdf"></div>
   </div>
 </template>
 
