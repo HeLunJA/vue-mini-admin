@@ -17,10 +17,5 @@ const isViewFlag = computed(() => globalStore.isViewFlag)
 <style lang="scss" scoped>
 .main {
   height: calc(100% - 40px);
-  .card {
-    height: 100%;
-    width: 100%;
-    border: 0;
-  }
 }
 </style>

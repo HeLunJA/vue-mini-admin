@@ -41,8 +41,8 @@ onMounted(() => {
         </el-scrollbar>
       </el-aside>
       <el-main>
-        <LayoutTab />
-        <LayoutMain />
+        <LayoutTab class="tabs" />
+        <LayoutMain class="layoutMain" />
       </el-main>
     </el-container>
   </el-container>
@@ -78,6 +78,14 @@ onMounted(() => {
         transform: v-bind(rotate);
       }
     }
+  }
+  .tabs {
+    position: sticky;
+    top: -20px;
+    z-index: 1000;
+  }
+  .layoutMain {
+    margin-top: 20px;
   }
   :deep(.el-main) {
     background: $base-bgc-color;

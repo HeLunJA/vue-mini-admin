@@ -56,13 +56,15 @@ const columnOptions = ref<columnProps[]>([
 const searchParam = ref({})
 </script>
 <template>
-  <el-card class="card" shadow="never">
-    <PageTable
-      :data-request="getTableData"
-      :search-param="searchParam"
-      :columns="columnOptions"
-      border
-      max-height="700"
-    ></PageTable>
-  </el-card>
+  <div class="card" shadow="never">
+    <PageTable :data-request="getTableData" :search-param="searchParam" :columns="columnOptions" border></PageTable>
+  </div>
 </template>
+<style lang="scss" scoped>
+.card {
+  border-radius: 6px;
+  padding: 16px;
+  box-sizing: border-box;
+  background-color: $theme--card-bgc-color;
+}
+</style>
