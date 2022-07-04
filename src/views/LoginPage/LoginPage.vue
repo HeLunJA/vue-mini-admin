@@ -74,7 +74,7 @@ onMounted(() => {
       <div class="drop"></div>
       <div class="drop"></div>
       <div class="drop"></div>
-      <div class="title">vue mini admin</div>
+      <div class="title">Drop Admin</div>
       <DarkThemeSwitch class="switch" />
       <el-form ref="ruleFormRef" :model="account" status-icon :rules="rules" class="demo-ruleForm">
         <el-form-item prop="name">
