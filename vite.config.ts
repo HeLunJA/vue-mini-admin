@@ -21,10 +21,10 @@ export default ({ mode }) => {
       }),
       AutoImport({
         imports: ['vue', 'vue-router'],
-        dts: 'src/types/auto-import.d.ts'
+        dts: 'src/types/autoImport/auto-import.d.ts'
       }),
       Components({
-        dts: 'src/types/component.d.ts',
+        dts: 'src/types/autoImport/component.d.ts',
         resolvers: [ElementPlusResolver()]
       }),
       createSvgIconsPlugin({
