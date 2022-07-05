@@ -18,8 +18,12 @@ export default function useGetTableData(props, currentPage: Ref<number>, pageSiz
       }
     })
   }
-  watchEffect(() => {
-    getTableData()
-  })
+  watch(
+    [() => currentPage.value, () => pageSize.value],
+    () => {
+      getTableData()
+    },
+    { immediate: true }
+  )
   return { tableData, tableLoading, tableTotal, getTableData }
 }

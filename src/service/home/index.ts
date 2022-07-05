@@ -7,3 +7,7 @@ export function getGeneralData() {
 export function getTableData(data) {
   return instance.post('/mockGetTableData', data)
 }
+
+export function editTableData(data) {
+  return instance.post('/mockEditTableData', data)
+}

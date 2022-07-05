@@ -44,6 +44,7 @@ watch(
     immediate: true
   }
 )
+defineExpose({ getTableData })
 </script>
 <template>
   <div class="option">
@@ -59,11 +60,11 @@ watch(
     </div>
   </div>
   <el-table v-loading="tableLoading" class="table" v-bind="$attrs" :data="tableData">
-    <el-table-column label="序号" align="center" fixed="left">
+    <!-- <el-table-column label="序号" align="center" fixed="left">
       <template #default="scope">
         <div>{{ scope.$index + 1 }}</div>
       </template>
-    </el-table-column>
+    </el-table-column> -->
     <table-column v-for="item in columns" :key="item.id" :item-prop="item">
       <template v-for="slot in Object.keys(slots)" #[slot]="data">
         <slot :name="slot" v-bind="data" />

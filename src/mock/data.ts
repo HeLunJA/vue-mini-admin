@@ -20,6 +20,7 @@ const generalData: MockMethod = {
 const tableData: any[] = []
 for (let i = 0; i < 215; i++) {
   const template = {
+    id: Random.natural(),
     age: Random.natural(18, 65),
     name: Random.cname(),
     address: Random.county(true),
@@ -27,6 +28,7 @@ for (let i = 0; i < 215; i++) {
     level: Random.natural(1, 10),
     gold: Random.natural(5000, 20000),
     active: Random.natural(0, 1),
+    accountType: Random.natural(1, 2),
     activeTime: Random.natural(1000, 160000),
     headPhoto: Random.image('80x80', Random.color(), '#FFF', 'png', Random.county()),
     date: new Date().getTime() - Random.natural(100000000, 500000000)
@@ -38,8 +40,12 @@ const getTableData: MockMethod = {
   method: 'post',
   timeout: 1000,
   response: (params) => {
-    const { currentPage, pageSize } = params.body
-    const newDataList = tableData.slice(pageSize * (currentPage - 1), pageSize * (currentPage - 1) + pageSize)
+    const { currentPage, pageSize, name } = params.body
+    let dataList: any[] = tableData
+    if (name) {
+      dataList = tableData.filter((item) => item.name.indexOf(name) !== -1)
+    }
+    const newDataList = dataList.slice(pageSize * (currentPage - 1), pageSize * (currentPage - 1) + pageSize)
     return {
       list: newDataList,
       total: tableData.length,
@@ -48,4 +54,18 @@ const getTableData: MockMethod = {
   }
 }
 
-export { generalData, getTableData }
+const editTableData: MockMethod = {
+  url: '/api/mockEditTableData',
+  method: 'post',
+  timeout: 1000,
+  response: (params) => {
+    const { id } = params.body
+    tableData[tableData.findIndex((item) => item.id === id)] = params.body
+    return {
+      code: '0000',
+      msg: '修改成功！！！'
+    }
+  }
+}
+
+export { generalData, getTableData, editTableData }
