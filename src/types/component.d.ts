@@ -15,8 +15,6 @@ declare module '@vue/runtime-core' {
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
-    ElForm: typeof import('element-plus/es')['ElForm']
-    ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElHeader: typeof import('element-plus/es')['ElHeader']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElImage: typeof import('element-plus/es')['ElImage']
@@ -39,12 +37,12 @@ declare module '@vue/runtime-core' {
     ElTree: typeof import('element-plus/es')['ElTree']
     Loading: typeof import('element-plus/es')['ElLoadingDirective']
     MenuSearch: typeof import('./../components/MenuSearch/MenuSearch.vue')['default']
-    PageTable: typeof import('./../components/PageTable/PageTable.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    ShowColumnTree: typeof import('./../components/PageTable/components/ShowColumnTree.vue')['default']
+    ShowColumnTree: typeof import('./../components/TableNext/components/ShowColumnTree.vue')['default']
     SvgIcon: typeof import('./../components/SvgIcon/SvgIcon.vue')['default']
-    TableColumn: typeof import('./../components/PageTable/components/TableColumn.vue')['default']
+    TableColumn: typeof import('./../components/TableNext/components/TableColumn.vue')['default']
+    TableNext: typeof import('./../components/TableNext/TableNext.vue')['default']
   }
 }
 

@@ -111,14 +111,14 @@ const columnOptions = ref<columnProps[]>([
 </script>
 <template>
   <div class="card" shadow="never">
-    <PageTable
+    <table-next
       ref="pageTable"
       :data-request="getTableData"
       :search-param="searchParam"
       :columns="columnOptions"
       :max-height="600"
       border
-    ></PageTable>
+    ></table-next>
   </div>
 </template>
 <style lang="scss" scoped>
