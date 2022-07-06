@@ -5,40 +5,44 @@ import dayjs from 'dayjs'
 import { editTableData } from '@/service/home'
 import { ElMessage } from 'element-plus'
 
-interface ISearchParam {
+interface IParams {
   name?: string
   active?: number
 }
 
 const pageTable = ref()
-const searchParam = reactive<ISearchParam>({})
+const searchParam = reactive<IParams>({})
+
+const isSwitchLoading = ref(false)
+const formData = ref<IParams>({})
+
+const isShowDrawer = ref(false)
+
 const accountTypes = ref([
   { text: 'VIP账号', value: '1' },
   { text: '普通账号', value: '2' }
 ])
-const editData = async (formData) => {
+const editActiveNumber = async (row, val: number) => {
+  isSwitchLoading.value = true
+  const formData = JSON.parse(JSON.stringify(row))
+  formData.active = val
   const result = await editTableData(formData)
-  ElMessage.success(result.data.msg)
-  pageTable.value.getTableData()
+  if (result.data.code === '0000') {
+    row.active = val
+    ElMessage.success(result.data.msg)
+    pageTable.value.getTableData()
+  }
+  isSwitchLoading.value = false
+}
+const handleEdit = async (row) => {
+  isShowDrawer.value = true
+  formData.value = row
 }
 const columnOptions = ref<columnProps[]>([
   {
     label: '登录时间',
     prop: 'date',
     contentRender: (scope) => dayjs(scope.data.row.date).format('YYYY-MM-DD HH:ss')
-  },
-  {
-    label: '账号类型',
-    prop: 'accountType',
-    columnKey: 'accountType',
-    filters: accountTypes.value,
-    filterMethod: (value: string, row: any, column: any) => {
-      const property = column['property']
-      return row[property] == value
-    },
-    contentRender: (scope) =>
-      scope.data.row.accountType &&
-      accountTypes.value.map((item) => (item.value == scope.data.row.accountType ? <div>{item.text}</div> : null))
   },
   {
     label: '用户信息',
@@ -68,6 +72,19 @@ const columnOptions = ref<columnProps[]>([
     childrenColumns: [
       { label: '登录账号', prop: 'account' },
       {
+        label: '账号类型',
+        prop: 'accountType',
+        columnKey: 'accountType',
+        filters: accountTypes.value,
+        filterMethod: (value: string, row: any, column: any) => {
+          const property = column['property']
+          return row[property] == value
+        },
+        contentRender: (scope) =>
+          scope.data.row.accountType &&
+          accountTypes.value.map((item) => (item.value == scope.data.row.accountType ? <div>{item.text}</div> : null))
+      },
+      {
         label: '头像',
         prop: 'headPhoto',
         contentRender: (scope) => (
@@ -81,7 +98,7 @@ const columnOptions = ref<columnProps[]>([
         )
       },
       {
-        label: '徒弟信息',
+        label: '其他信息',
         childrenColumns: [
           { label: '等级', prop: 'level', sortable: true },
           { label: '金币数量', prop: 'gold' }
@@ -93,8 +110,11 @@ const columnOptions = ref<columnProps[]>([
         contentRender: (scope) =>
           typeof scope.data.row.active === 'number' && (
             <el-switch
-              v-model={scope.data.row.active}
-              onChange={() => editData(scope.data.row)}
+              value={scope.data.row.active}
+              loading={isSwitchLoading.value}
+              onChange={(val) => {
+                editActiveNumber(scope.data.row, val)
+              }}
               inline-prompt
               active-text="是"
               inactive-text="否"
@@ -105,12 +125,11 @@ const columnOptions = ref<columnProps[]>([
       }
     ]
   },
-  { label: '日在线时长', prop: 'activeTime' },
-  { label: '操作', prop: 'pt', fixed: 'right' }
+  { label: '操作', slot: 'opt', fixed: 'right' }
 ])
 </script>
 <template>
-  <div class="card" shadow="never">
+  <div class="card">
     <table-next
       ref="pageTable"
       :data-request="getTableData"
@@ -118,7 +137,14 @@ const columnOptions = ref<columnProps[]>([
       :columns="columnOptions"
       :max-height="600"
       border
-    ></table-next>
+    >
+      <template #opt="scope">
+        <el-button type="primary" icon="Edit" text @click="handleEdit(scope.row)">编辑</el-button>
+      </template>
+    </table-next>
+    <el-drawer v-model="isShowDrawer" title="编辑" :before-close="() => (isShowDrawer = false)">
+      <span>Hi, there!</span>
+    </el-drawer>
   </div>
 </template>
 <style lang="scss" scoped>

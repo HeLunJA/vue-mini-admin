@@ -29,7 +29,6 @@ for (let i = 0; i < 215; i++) {
     gold: Random.natural(5000, 20000),
     active: Random.natural(0, 1),
     accountType: Random.natural(1, 2),
-    activeTime: Random.natural(1000, 160000),
     headPhoto: Random.image('80x80', Random.color(), '#FFF', 'png', Random.county()),
     date: new Date().getTime() - Random.natural(100000000, 500000000)
   }
