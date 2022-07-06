@@ -48,7 +48,7 @@ router.beforeEach(async (to, from, next) => {
         routerList.forEach((route) => {
           router.addRoute(route)
         })
-        next({ path: to.path as string, replace: true })
+        next({ path: to.path, replace: true })
       } else {
         next()
       }

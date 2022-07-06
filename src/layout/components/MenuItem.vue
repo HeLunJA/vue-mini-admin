@@ -18,12 +18,7 @@ const action = (name: RouteRecordName | undefined) => {
       </template>
       <MenuItem :menu-list="item.children" />
     </el-sub-menu>
-    <el-menu-item
-      v-else
-      :key="(item.name as RouteRecordName)"
-      :index="(item.name as string)"
-      @click="action(item.name)"
-    >
+    <el-menu-item v-else :key="item.name!" :index="(item.name as string)" @click="action(item.name)">
       <el-icon><component :is="item.meta.icon"></component></el-icon>
       <template #title>{{ item.meta.label }}</template>
     </el-menu-item>

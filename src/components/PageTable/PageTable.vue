@@ -38,7 +38,7 @@ const { defaultShowKeys, setColumns } = useSetColumn()
 watch(
   () => props.columns,
   (columns) => {
-    setColumns(columns as columnProps[])
+    setColumns(columns)
   },
   {
     immediate: true

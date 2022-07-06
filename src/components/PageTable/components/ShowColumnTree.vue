@@ -23,7 +23,7 @@ const handleChange = (node, checked, isChildrenChecked) => {
 </script>
 <template>
   <el-tree
-    :data="(columns as unknown[])"
+    :data="columns!"
     show-checkbox
     node-key="id"
     :props="defaultProps"
