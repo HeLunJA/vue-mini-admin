@@ -1,18 +1,18 @@
-import type { WritableComputedRef, Ref } from 'vue'
+import type { Ref } from 'vue'
 import { getGeneralData } from '@/service/home'
 import { useAnimatedNumber } from '@/hooks/useAnimatedNumber'
-interface IGeneral<T> {
+interface IGeneral {
   label: string
   icon: string
-  number: WritableComputedRef<T> | null
+  number?: number
 }
-export function useGetGeneralData(): { isSkeleton: Ref<boolean>; generals: Ref<IGeneral<number>[]> } {
+export function useGetGeneralData(): { isSkeleton: Ref<boolean>; generals: Ref<IGeneral[]> } {
   const isSkeleton = ref<boolean>(true)
-  const generals = ref<IGeneral<number>[]>([
-    { label: '点赞人数', icon: 'zan', number: null },
-    { label: '收藏人数', icon: 'sc', number: null },
-    { label: '分享人数', icon: 'fx', number: null },
-    { label: '评论人数', icon: 'pl', number: null }
+  const generals = ref<IGeneral[]>([
+    { label: '点赞人数', icon: 'zan' },
+    { label: '收藏人数', icon: 'sc' },
+    { label: '分享人数', icon: 'fx' },
+    { label: '评论人数', icon: 'pl' }
   ])
   getGeneralData().then((result) => {
     const numbers: number[] = result.data.list
@@ -23,6 +23,6 @@ export function useGetGeneralData(): { isSkeleton: Ref<boolean>; generals: Ref<I
   })
   return {
     isSkeleton,
-    generals: generals as Ref<IGeneral<number>[]>
+    generals
   }
 }

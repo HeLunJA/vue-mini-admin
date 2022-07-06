@@ -1,6 +1,7 @@
+import type { RouteRecordName } from 'vue-router'
 export interface ItabItem {
   label: string
-  name: string
+  name: RouteRecordName
   path: string
 }
 export interface IGlobalState {

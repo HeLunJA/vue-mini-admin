@@ -18,7 +18,7 @@ function useAnimatedNumber(number: Ref<number> | number, duration = 0.5, toFixed
     },
     { immediate: true }
   )
-  return animatedNumber as WritableComputedRef<number>
+  return animatedNumber
 }
 
 export { useAnimatedNumber }

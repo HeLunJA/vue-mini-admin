@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { columnProps } from '@/types/elComponent'
 interface IColumnProps {
-  itemProp: columnProps | null
+  itemProp: columnProps
 }
-withDefaults(defineProps<IColumnProps>(), { itemProp: null })
+withDefaults(defineProps<IColumnProps>(), {})
 const slots = useSlots()
 </script>
 <template>

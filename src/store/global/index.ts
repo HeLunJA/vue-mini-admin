@@ -2,9 +2,10 @@ import { defineStore } from 'pinia'
 import router from '@/router'
 import setRouter from '@/utils/setRouter'
 import { getRouterList } from '@/service/login'
+import type { RouteRecordName } from 'vue-router'
 type tabItem = {
   label: string
-  name: string
+  name: RouteRecordName
   path: string
 }
 type globalState = {
@@ -42,7 +43,7 @@ export const useGlobalStore = defineStore({
         this.tabList.push(tab)
       }
     },
-    removeTab(name: string, routeName: string) {
+    removeTab(name: RouteRecordName, routeName: RouteRecordName) {
       if (this.tabList.length === 1) return
       const index = this.tabList.findIndex((item) => item.name === name)
       this.tabList.splice(index, 1)

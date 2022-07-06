@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ItabItem } from '@/store/global/type'
+import type { RouteRecordName } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useSwitchDark } from '@/hooks/useChangeTheme'
 import { useGlobalStore } from '@/store/global'
@@ -9,13 +10,13 @@ const gloablStore = useGlobalStore()
 const { tabList } = storeToRefs(gloablStore)
 const isDark = useSwitchDark()
 const activeColor = computed(() => (isDark.value ? '#274f62' : '#cae4ff'))
-const tabAction = (name: string) => {
+const tabAction = (name: RouteRecordName) => {
   router.push({
     name
   })
 }
-const tabClose = (name: string) => {
-  gloablStore.removeTab(name, route.name as string)
+const tabClose = (name: RouteRecordName) => {
+  gloablStore.removeTab(name, route.name!)
 }
 const refresh = () => {
   gloablStore.updateViewFlag(false)
@@ -33,7 +34,7 @@ watch(
   () => route.name,
   () => {
     if (route.name && route.name !== 'notFound' && route.name !== 'login') {
-      gloablStore.addTab({ name: route.name as string, label: route.meta.label as string, path: route.path })
+      gloablStore.addTab({ name: route.name, label: route.meta.label as string, path: route.path })
     }
   }
 )

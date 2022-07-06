@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import type { columnProps, tableProps } from '@/types/elComponent'
 import type { IPagination } from './type'
-import type { Ref } from 'vue'
 
 import { useSwitchDark } from '@/hooks/useChangeTheme'
 import usePagination from './hooks/usePagination'
@@ -29,11 +28,7 @@ const slots = useSlots()
 const isDark = useSwitchDark()
 const theadColor = computed(() => (isDark.value ? '#b9bcc2' : '#433c3c'))
 const { currentPage, pageSize, handleSizeChange, handleCurrentChange } = usePagination(props.paginationConfig)
-const { tableData, tableLoading, tableTotal, getTableData } = useGetTableData(
-  props,
-  currentPage as Ref<number>,
-  pageSize as Ref<number>
-)
+const { tableData, tableLoading, tableTotal, getTableData } = useGetTableData(props, currentPage, pageSize)
 const { defaultShowKeys, setColumns } = useSetColumn()
 watch(
   () => props.columns,

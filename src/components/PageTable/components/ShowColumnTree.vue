@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { columnProps } from '@/types/elComponent'
 interface IColumnProps {
-  columns: columnProps[] | null
-  defaultCheckedKeys: string[] | null
+  columns: columnProps[]
+  defaultCheckedKeys: string[]
 }
-withDefaults(defineProps<IColumnProps>(), { columns: null, defaultCheckedKeys: null })
+withDefaults(defineProps<IColumnProps>(), {})
 const defaultProps = {
   children: 'childrenColumns',
   label: 'label'
@@ -23,12 +23,12 @@ const handleChange = (node, checked, isChildrenChecked) => {
 </script>
 <template>
   <el-tree
-    :data="columns!"
+    :data="columns"
     show-checkbox
     node-key="id"
     :props="defaultProps"
     default-expand-all
-    :default-checked-keys="(defaultCheckedKeys as string[])"
+    :default-checked-keys="defaultCheckedKeys"
     @check-change="handleChange"
   />
 </template>
