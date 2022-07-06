@@ -116,7 +116,7 @@ const columnOptions = ref<columnProps[]>([
       :data-request="getTableData"
       :search-param="searchParam"
       :columns="columnOptions"
-      :max-height="700"
+      :max-height="600"
       border
     ></PageTable>
   </div>

@@ -38,7 +38,7 @@ const toggleFullscreen = () => {
       <LayoutBreadcrumb />
     </div>
     <div class="headerBox-right">
-      <DarkThemeSwitch></DarkThemeSwitch>
+      <dark-theme-switch />
       <el-dropdown trigger="click">
         <component :is="'Tools'" class="setIcon"></component>
         <template #dropdown>

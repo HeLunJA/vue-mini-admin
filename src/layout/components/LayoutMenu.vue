@@ -21,7 +21,7 @@ const routerList = computed(() => globalStore.routerList)
       <el-icon><component :is="'Eleme'"></component></el-icon>
       <template #title>首页概况</template>
     </el-menu-item>
-    <MenuItem :menu-list="routerList" />
+    <menu-item :menu-list="routerList" />
   </el-menu>
 </template>
 

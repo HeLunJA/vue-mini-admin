@@ -29,20 +29,20 @@ onMounted(() => {
 
 <template>
   <el-container class="layout">
-    <el-header class="header"><LayoutHeader /></el-header>
+    <el-header class="header"><layout-header /></el-header>
     <el-container class="container">
       <el-aside class="aside" :width="collapseWidth">
         <el-scrollbar>
           <div class="search">
-            <MenuSearch v-if="!isCollapse" class="margin-left-8px" />
+            <menu-search v-if="!isCollapse" class="margin-left-8px" />
             <component :is="'Expand'" class="expand" @click="changeMenu"></component>
           </div>
-          <LayoutMenu />
+          <layout-menu />
         </el-scrollbar>
       </el-aside>
       <el-main>
-        <LayoutTab class="tabs" />
-        <LayoutMain class="layoutMain" />
+        <layout-tab class="tabs" />
+        <layout-main class="layoutMain" />
       </el-main>
     </el-container>
   </el-container>
