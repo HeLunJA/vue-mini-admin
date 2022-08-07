@@ -16,7 +16,7 @@ export default ({ mode }) => {
       vue(),
       vueJsx(),
       viteMockServe({
-        mockPath: './src/mock',
+        mockPath: './mock',
         supportTs: true
       }),
       AutoImport({
@@ -24,13 +24,40 @@ export default ({ mode }) => {
         dts: 'src/types/auto-import.d.ts'
       }),
       Components({
-        dts: 'src/types/component.d.ts',
-        resolvers: [ElementPlusResolver()]
+        // 生产环境按需导入
+        resolvers: process.env.NODE_ENV === 'production' ? ElementPlusResolver() : undefined,
+        extensions: ['vue'],
+        include: [/\.vue$/, /\.vue\?vue/],
+        dts: 'src/types/component.d.ts'
       }),
+      // 开发环境完整引入element-plus
+      {
+        name: 'dev-auto-import-element-plus',
+        transform(code, id) {
+          if (process.env.NODE_ENV !== 'production' && /src\/main.ts$/.test(id)) {
+            return {
+              code: `${code};import ElementPlus from 'element-plus';import 'element-plus/dist/index.css';app.use(ElementPlus);`,
+              map: null
+            }
+          }
+        }
+      },
       createSvgIconsPlugin({
         iconDirs: [path.resolve(process.cwd(), 'src/assets/svg')]
       })
     ],
+    build: {
+      // cssCodeSplit: false,
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('element-plus/es')) {
+              return 'element-plus'
+            }
+          }
+        }
+      }
+    },
     resolve: {
       alias: {
         '@': '/src'
