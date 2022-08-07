@@ -55,7 +55,7 @@ onMounted(() => {
 .layout {
   min-width: 1200px;
   .header {
-    border-bottom: 1px solid $theme-border-color;
+    border-bottom: 1px solid var(--el-border-color-light);
     box-sizing: border-box;
   }
   .container {
@@ -69,7 +69,7 @@ onMounted(() => {
       justify-content: center;
       height: 40px;
       padding: 0px 8px;
-      border-right: 1px solid $theme-border-color;
+      border-right: 1px solid var(--el-border-color-light);
       box-sizing: border-box;
       width: v-bind(collapseWidth);
       .expand {
@@ -88,7 +88,7 @@ onMounted(() => {
     margin-top: 20px;
   }
   :deep(.el-main) {
-    background: $base-bgc-color;
+    background: var(--el-fill-color-extra-light);
   }
   :deep(.el-aside) {
     transition: all 0.2s ease;

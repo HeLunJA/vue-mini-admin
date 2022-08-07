@@ -79,9 +79,9 @@ defineExpose({ getTableData })
 </template>
 <style lang="scss">
 .down-popover {
-  background: $theme--card-bgc-color !important;
+  background: var(--el-bg-color-overlay) !important;
   .el-tree {
-    background: $theme--card-bgc-color !important;
+    background: var(--el-bg-color-overlay) !important;
   }
 }
 </style>

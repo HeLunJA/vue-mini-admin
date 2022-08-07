@@ -152,6 +152,6 @@ const columnOptions = ref<columnProps[]>([
   border-radius: 6px;
   padding: 16px;
   box-sizing: border-box;
-  background-color: $theme--card-bgc-color;
+  background-color: var(--el-bg-color-overlay);
 }
 </style>

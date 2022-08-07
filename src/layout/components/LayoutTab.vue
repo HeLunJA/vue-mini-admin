@@ -74,8 +74,8 @@ watch(
   margin-bottom: 20px;
   height: 40px;
   white-space: nowrap;
-  border-bottom: 1px solid $theme-border-color;
-  background-color: $theme--card-bgc-color;
+  border-bottom: 1px solid var(--el-border-color-light);
+  background-color: var(--el-bg-color-overlay);
   &-item {
     margin-right: 8px;
     height: 30px;

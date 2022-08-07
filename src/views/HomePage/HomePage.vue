@@ -85,7 +85,7 @@ onMounted(() => {
     font-weight: bold;
     padding: 22px 0;
     padding-left: 16px;
-    border-bottom: 1px solid $theme-border-color;
+    border-bottom: 1px solid var(--el-border-color-light);
     &::before {
       content: '';
       position: absolute;
@@ -112,7 +112,12 @@ onMounted(() => {
     .border {
       height: 160px;
       width: 1px;
-      background: linear-gradient(180deg, v-bind(spaceColor) 0%, $theme-border-color 50%, v-bind(spaceColor) 100%);
+      background: linear-gradient(
+        180deg,
+        v-bind(spaceColor) 0%,
+        var(--el-border-color-light) 50%,
+        v-bind(spaceColor) 100%
+      );
     }
     .item {
       display: flex;
