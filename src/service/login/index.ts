@@ -1,5 +1,5 @@
 import { instance } from '../index'
-import '@/mock/index.ts'
+import '../../../mock/index.ts'
 export function login(account: IAccountType) {
   return instance.post('/mockLogin', account)
 }
