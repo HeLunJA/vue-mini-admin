@@ -46,6 +46,10 @@ const toggleFullscreen = () => {
         :class="['iconfont', isOpen ? 'icon-quanping_o' : 'icon-quxiaoquanping_o', 'icon-size']"
         @click="toggleFullscreen"
       ></span>
+      <span
+        :class="['iconfont', isOpen ? 'icon-a-yuyanzhongwen' : 'icon-a-yuyanyingwen', 'lang-size']"
+        @click="toggleFullscreen"
+      ></span>
       <el-dropdown trigger="click">
         <component :is="'setting'" class="setIcon"></component>
         <template #dropdown>
@@ -60,6 +64,11 @@ const toggleFullscreen = () => {
 
 <style lang="scss" scoped>
 .icon-size {
+  font-size: 24px;
+  margin-left: 12px;
+  color: var(--el-text-color-regular);
+}
+.lang-size {
   font-size: 24px;
   margin-left: 12px;
   color: var(--el-text-color-regular);

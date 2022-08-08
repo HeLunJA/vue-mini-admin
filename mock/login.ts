@@ -30,7 +30,7 @@ const routers: any = [
     path: '/componentViews',
     meta: {
       label: '常用组件',
-      icon: 'Edit',
+      icon: 'Star',
       componentPath: null
     },
     children: [

@@ -20,7 +20,7 @@ const slots = useSlots()
       <component :is="itemProp.contentRender" :data="scope"></component>
     </template>
   </el-table-column>
-  <el-table-column v-else-if="itemProp?.slot && itemProp.show" v-bind="itemProp" align="center" show-overflow-tooltip>
+  <el-table-column v-else-if="itemProp.slot && itemProp.show" v-bind="itemProp" align="center" show-overflow-tooltip>
     <template v-if="itemProp.headerRender" #header
       ><component :is="itemProp.headerRender" :row="itemProp"></component
     ></template>
@@ -28,11 +28,7 @@ const slots = useSlots()
       <slot :name="itemProp.slot" :row="scope.row" />
     </template>
   </el-table-column>
-  <el-table-column
-    v-else-if="itemProp?.childrenColumns && itemProp.childrenColumns.length && itemProp.show"
-    v-bind="itemProp"
-    align="center"
-  >
+  <el-table-column v-else-if="itemProp.childrenColumns?.length && itemProp.show" v-bind="itemProp" align="center">
     <template v-if="itemProp.headerRender" #header
       ><component :is="itemProp.headerRender" :row="itemProp"></component
     ></template>
@@ -42,7 +38,7 @@ const slots = useSlots()
       </template>
     </table-column>
   </el-table-column>
-  <el-table-column v-else-if="itemProp?.show" v-bind="itemProp" align="center" show-overflow-tooltip>
+  <el-table-column v-else-if="itemProp.show" v-bind="itemProp" align="center" show-overflow-tooltip>
     <template v-if="itemProp.headerRender" #header
       ><component :is="itemProp.headerRender" :row="itemProp"></component
     ></template>
