@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { useSwitchDark, useDarkThemeChange } from '@/hooks/useChangeTheme'
 const isDark = useSwitchDark()
-const iconName = computed(() => (isDark.value ? 'moon' : 'sun'))
+const iconName = computed(() => (isDark.value ? 'moon' : 'sunny'))
 </script>
 
 <template>
-  <svg-icon class="svg" :name="iconName" @click="useDarkThemeChange(!isDark)"></svg-icon>
+  <component :is="iconName" class="setIcon" @click="useDarkThemeChange(!isDark)"></component>
 </template>
 
 <style lang="scss" scoped>
-.svg {
+.setIcon {
   cursor: pointer;
-  &:hover {
-    transform: scale(1.2, 1.2);
-  }
+  width: 18px;
+  height: 18px;
+  margin-left: 12px;
 }
 </style>

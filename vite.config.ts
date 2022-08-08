@@ -47,7 +47,6 @@ export default ({ mode }) => {
       })
     ],
     build: {
-      // cssCodeSplit: false,
       rollupOptions: {
         output: {
           manualChunks(id) {

@@ -9,6 +9,7 @@ const theme_store = themeStore()
 const router = useRouter()
 const isCollapse = computed(() => theme_store.isCollapse)
 const collapseWidth = computed(() => (isCollapse.value ? '64px' : '200px'))
+const isOpen = ref(true)
 const loginOut = () => {
   router
     .replace({
@@ -20,9 +21,11 @@ const loginOut = () => {
     })
 }
 const toggleFullscreen = () => {
+  isOpen.value = !isOpen.value
   if (screenfull.isEnabled) {
     screenfull.toggle()
   }
+  console.log('[ isOpen.value ] >', isOpen.value)
 }
 </script>
 
@@ -39,20 +42,28 @@ const toggleFullscreen = () => {
     </div>
     <div class="headerBox-right">
       <dark-theme-switch />
+      <span
+        :class="['iconfont', isOpen ? 'icon-quanping_o' : 'icon-quxiaoquanping_o', 'icon-size']"
+        @click="toggleFullscreen"
+      ></span>
       <el-dropdown trigger="click">
-        <component :is="'Tools'" class="setIcon"></component>
+        <component :is="'setting'" class="setIcon"></component>
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item icon="SwitchButton" @click="loginOut">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
-      <el-button @click="toggleFullscreen">全屏</el-button>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.icon-size {
+  font-size: 24px;
+  margin-left: 12px;
+  color: var(--el-text-color-regular);
+}
 .headerBox {
   display: flex;
   justify-content: space-between;
