@@ -89,7 +89,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
             placeholder="请输入登录密码"
           />
         </el-form-item>
-        <button class="btn" @click="submitForm(ruleFormRef)">
+        <button class="btn" @click.prevent="submitForm(ruleFormRef)">
           <span class="btn-text">登录</span>
         </button>
       </el-form>
