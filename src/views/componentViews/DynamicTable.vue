@@ -110,7 +110,7 @@ const columnOptions = ref<columnProps[]>([
         contentRender: (scope) =>
           typeof scope.data.row.active === 'number' && (
             <el-switch
-              value={scope.data.row.active}
+              model-value={scope.data.row.active}
               loading={isSwitchLoading.value}
               onChange={(val) => {
                 editActiveNumber(scope.data.row, val)
