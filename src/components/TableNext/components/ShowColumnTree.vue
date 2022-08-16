@@ -4,13 +4,13 @@ interface IColumnProps {
   columns: columnProps[]
   defaultCheckedKeys: string[]
 }
-withDefaults(defineProps<IColumnProps>(), {})
+defineProps<IColumnProps>()
 const defaultProps = {
   children: 'childrenColumns',
   label: 'label'
 }
 const handleChange = (node, checked, isChildrenChecked) => {
-  if (node.childrenColumns && node.childrenColumns.length) {
+  if (node.childrenColumns?.length) {
     if (isChildrenChecked) {
       node.show = true
     } else {

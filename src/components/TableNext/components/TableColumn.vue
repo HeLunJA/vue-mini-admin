@@ -3,7 +3,7 @@ import { columnProps } from '@/types/elComponent'
 interface IcolumnProps {
   itemProp: columnProps
 }
-withDefaults(defineProps<IcolumnProps>(), {})
+defineProps<IcolumnProps>()
 const slots = useSlots()
 </script>
 <template>

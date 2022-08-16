@@ -40,7 +40,7 @@ router.beforeEach(async (to, from, next) => {
       name: 'login'
     })
   } else {
-    if (globalStore.routerList.length) {
+    if (globalStore.routerList?.length) {
       next()
     } else {
       if (globalStore.token) {

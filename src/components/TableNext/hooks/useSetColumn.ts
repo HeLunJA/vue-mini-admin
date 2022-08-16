@@ -15,7 +15,7 @@ export default function useSetColumn() {
           item.show = true
         }
       }
-      if (item.childrenColumns && item.childrenColumns.length) {
+      if (item.childrenColumns?.length) {
         setColumns(item.childrenColumns, { parentShow: item.show, parentId: item.id })
       } else {
         if (item.show) {
