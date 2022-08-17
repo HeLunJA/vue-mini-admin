@@ -11,7 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
-autoImport/
+typings/
+!typings/.ts
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
