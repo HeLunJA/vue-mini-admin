@@ -41,7 +41,7 @@ watch(
 </script>
 
 <template>
-  <!-- <el-scrollbar class="tab">
+  <el-scrollbar class="tab">
     <el-tag
       v-for="item in tabList"
       :key="item.name"
@@ -63,10 +63,7 @@ watch(
         </template>
       </el-dropdown>
     </el-tag>
-  </el-scrollbar> -->
-  <el-tabs type="card" class="demo-tabs">
-    <el-tab-pane v-for="item in tabList" :key="item.name" closable :label="item.label" :name="item.label"></el-tab-pane>
-  </el-tabs>
+  </el-scrollbar>
 </template>
 
 <style lang="scss" scoped>
