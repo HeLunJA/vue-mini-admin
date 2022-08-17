@@ -2,7 +2,7 @@
 import type { columnProps, tableProps } from '@/typings/elComponent'
 import type { IPagination } from './type'
 
-import { useSwitchDark } from '@/hooks/useChangeTheme'
+import useChangeDarkTheme from '@/hooks/useChangeDarkTheme'
 import usePagination from './hooks/usePagination'
 import useSetColumn from './hooks/useSetColumn'
 import useGetTableData from './hooks/useGetTableData'
@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<IPageTableProps>(), {
   }
 })
 const slots = useSlots()
-const isDark = useSwitchDark()
+const { isDark } = useChangeDarkTheme()
 const theadColor = computed(() => (isDark.value ? '#b9bcc2' : '#433c3c'))
 const { currentPage, pageSize, handleSizeChange, handleCurrentChange } = usePagination(props.paginationConfig)
 const { tableData, tableLoading, tableTotal, getTableData } = useGetTableData(props, currentPage, pageSize)

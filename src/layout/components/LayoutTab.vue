@@ -2,13 +2,13 @@
 import type { ItabItem } from '@/store/global/type'
 import type { RouteRecordName } from 'vue-router'
 import { storeToRefs } from 'pinia'
-import { useSwitchDark } from '@/hooks/useChangeTheme'
+import useChangeDarkTheme from '@/hooks/useChangeDarkTheme'
 import { useGlobalStore } from '@/store/global'
 const router = useRouter()
 const route = useRoute()
 const gloablStore = useGlobalStore()
 const { tabList } = storeToRefs(gloablStore)
-const isDark = useSwitchDark()
+const { isDark } = useChangeDarkTheme()
 const activeColor = computed(() => (isDark.value ? '#274f62' : '#cae4ff'))
 const tabAction = (name: RouteRecordName) => {
   router.push({

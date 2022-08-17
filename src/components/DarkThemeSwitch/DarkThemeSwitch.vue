@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useSwitchDark, useDarkThemeChange } from '@/hooks/useChangeTheme'
-const isDark = useSwitchDark()
+import useChangeDarkTheme from '@/hooks/useChangeDarkTheme'
+const { isDark, changeTheme } = useChangeDarkTheme()
 const iconName = computed(() => (isDark.value ? 'moon' : 'sunny'))
 </script>
 
 <template>
-  <component :is="iconName" class="setIcon" @click="useDarkThemeChange(!isDark)"></component>
+  <component :is="iconName" class="setIcon" @click="changeTheme(!isDark)"></component>
 </template>
 
 <style lang="scss" scoped>

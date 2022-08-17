@@ -2,12 +2,12 @@
 import type { EChartsOption } from 'echarts'
 import type { Ref } from 'vue'
 
-import { useSwitchDark } from '@/hooks/useChangeTheme'
+import useChangeDarkTheme from '@/hooks/useChangeDarkTheme'
 import { useGetGeneralData } from './hooks/useGetGeneralData'
 import { useCreateEcharts } from '@/hooks/useCreateEcharts'
 
 const echartDom = ref<HTMLDivElement>()
-const isDark = useSwitchDark()
+const { isDark } = useChangeDarkTheme()
 const spaceColor = computed(() => (isDark.value ? '#3b3636 ' : '#ffffff'))
 // 获取昨日概况数据和骨架屏状态
 const { generals, isSkeleton } = useGetGeneralData()

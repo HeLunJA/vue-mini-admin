@@ -1,11 +1,11 @@
 import type { Ref } from 'vue'
 import type { EChartsOption } from 'echarts'
-import { useSwitchDark } from '@/hooks/useChangeTheme'
+import useChangeDarkTheme from '@/hooks/useChangeDarkTheme'
 import echarts from '@/utils/echarts'
 type themeType = 'dark' | 'default'
 export function useCreateEcharts(el: Ref<HTMLDivElement>) {
   const echartOptions = ref<EChartsOption>({})
-  const isDark = useSwitchDark()
+  const { isDark } = useChangeDarkTheme()
   let myEchart: echarts.ECharts | null = null
   function initEcharts(theme: themeType = 'default') {
     myEchart = echarts.init(unref(el), theme)

@@ -2,10 +2,10 @@
 import type { FormInstance } from 'element-plus'
 import { login } from '@/service/login'
 import { ElMessage } from 'element-plus'
-import { useSwitchDark } from '@/hooks/useChangeTheme'
+import useChangeDarkTheme from '@/hooks/useChangeDarkTheme'
 import { useGlobalStore } from '@/store/global'
 
-const isDark = useSwitchDark()
+const { isDark } = useChangeDarkTheme()
 const waveClassName = computed(() => (isDark.value ? 'darkWaveSvg' : 'waveSvg'))
 const linearClassName = computed(() => (isDark.value ? 'darkLinear' : 'linear'))
 const loginCard = ref()
