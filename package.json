@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "lint": "eslint --ext .js,.vue src --fix"
+    "lint": "eslint --ext .js,.ts,.vue src --fix",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@vueuse/core": "^8.6.0",
@@ -23,6 +24,8 @@
     "vue-router": "4"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
     "@typescript-eslint/parser": "^5.29.0",
     "@vitejs/plugin-vue": "^2.3.3",
@@ -31,6 +34,8 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^9.1.1",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
     "mockjs": "^1.1.0",
     "prettier": "^2.7.1",
     "sass": "^1.52.3",
