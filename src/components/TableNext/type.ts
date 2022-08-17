@@ -1,4 +1,4 @@
-import { paginationProps } from '@/types/elComponent'
+import { paginationProps } from '@/typings/elComponent'
 export interface IPagination extends paginationProps {
   currentPage?: number
   pageSize?: number

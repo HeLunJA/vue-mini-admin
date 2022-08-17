@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { columnProps } from '@/types/elComponent'
+import { columnProps } from '@/typings/elComponent'
 interface IColumnProps {
   columns: columnProps[]
   defaultCheckedKeys: string[]

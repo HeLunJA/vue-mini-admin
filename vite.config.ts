@@ -21,14 +21,14 @@ export default ({ mode }) => {
       }),
       AutoImport({
         imports: ['vue', 'vue-router'],
-        dts: 'src/types/auto-import.d.ts'
+        dts: 'src/typings/auto-import.d.ts'
       }),
       Components({
         // 生产环境按需导入
         resolvers: process.env.NODE_ENV === 'production' ? ElementPlusResolver() : undefined,
         extensions: ['vue'],
         include: [/\.vue$/, /\.vue\?vue/],
-        dts: 'src/types/component.d.ts'
+        dts: 'src/typings/component.d.ts'
       }),
       // 开发环境完整引入element-plus
       {

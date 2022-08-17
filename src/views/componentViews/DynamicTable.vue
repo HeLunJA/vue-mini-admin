@@ -1,5 +1,5 @@
 <script lang="tsx" setup>
-import { columnProps } from '@/types/elComponent'
+import { columnProps } from '@/typings/elComponent'
 import { getTableData } from '@/service/home'
 import dayjs from 'dayjs'
 import { editTableData } from '@/service/home'

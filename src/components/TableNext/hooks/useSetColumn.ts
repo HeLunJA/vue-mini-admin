@@ -1,4 +1,4 @@
-import type { columnProps } from '@/types/elComponent'
+import type { columnProps } from '@/typings/elComponent'
 import type { IColumnParent } from '../type'
 export default function useSetColumn() {
   const defaultShowKeys = ref<string[]>([])

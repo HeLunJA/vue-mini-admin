@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { columnProps, tableProps } from '@/types/elComponent'
+import type { columnProps, tableProps } from '@/typings/elComponent'
 import type { IPagination } from './type'
 
 import { useSwitchDark } from '@/hooks/useChangeTheme'

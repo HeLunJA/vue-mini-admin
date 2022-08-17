@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { ItabItem } from '@/store/global/type'
 import type { RouteRecordName } from 'vue-router'
 import { storeToRefs } from 'pinia'
@@ -41,7 +41,7 @@ watch(
 </script>
 
 <template>
-  <el-scrollbar class="tab">
+  <!-- <el-scrollbar class="tab">
     <el-tag
       v-for="item in tabList"
       :key="item.name"
@@ -63,7 +63,10 @@ watch(
         </template>
       </el-dropdown>
     </el-tag>
-  </el-scrollbar>
+  </el-scrollbar> -->
+  <el-tabs type="card" class="demo-tabs">
+    <el-tab-pane v-for="item in tabList" :key="item.name" closable :label="item.label" :name="item.label"></el-tab-pane>
+  </el-tabs>
 </template>
 
 <style lang="scss" scoped>
