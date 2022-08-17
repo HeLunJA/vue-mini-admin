@@ -12,7 +12,7 @@ const action = (name: string) => {
     name
   })
 }
-const routerList = computed(() => globalStore.routerList);
+const routerList = computed(() => globalStore.routerList)
 </script>
 
 <template>
